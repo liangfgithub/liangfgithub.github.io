@@ -5891,35 +5891,12 @@ data.frame(Genres = genre_list,
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG1wID0gY29sU3VtcyhnZW5yZV9tYXRyaXgpXG5zdW1tYXJ5KHRtcClcbmBgYCJ9 -->
-<pre class="r"><code>tmp = colSums(genre_matrix)
-summary(tmp)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgTWluLiAxc3QgUXUuICBNZWRpYW4gICAgTWVhbiAzcmQgUXUuICAgIE1heC4gXG4gICAgIDQ0ICAgICAxMDggICAgIDIzMSAgICAgMzU2ICAgICA0MzkgICAgMTYwMyBcbiJ9 -->
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-     44     108     231     356     439    1603 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW92aWVzW3doaWNoKHRtcD09NiksIF1cbmBgYCJ9 -->
-<pre class="r"><code>movies[which(tmp==6), ]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6MH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVB3VzdDTUF3MUpSbWlVaEhTdnFPVmdBc2ZnRUFjZGtGTVlzZFFBa1NFQktWaDI5ZkQzQ1krTE1KU1pMOW5QenR2czlqTjhsME9BSDFna0VHZll3bjhjN3NzNXdBc1E5RER4ckROdnpqMGpnWERWMENJY1pKSElmMFRjaU91c29sRExKS0REL3V0NUhwQk0xdmx0WXpnYlNXTlEwVkE3RXNLbDZ3Y092dFQwZHJpMWMxYWk0WnVFcGtmaEJmVjBhRU8wU09SRE96TksydFFsTFV1ZVNMdXVZUVkzMDM3ZzBOWm4rL21VazRuN1lXdUg2SjRVYk53TTN2R1had2NTM05TaHZ4ekxmWlNSekJDcTUzVDZ1YVU4V1FGMmFieTFndWF5MnVyaWVuTXdlTVAvVG1xRDkwQkFBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["MovieID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Title"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Genres"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Year"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[0]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW92aWVzW3doaWNoKHRtcD09NSksIF1cbmBgYCJ9 -->
-<pre class="r"><code>movies[which(tmp==5), ]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6MH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVB3VzdDTUF3MUpSbWlVaEhTdnFPVmdBc2ZnRUFjZGtGTVlzZFFBa1NFQktWaDI5ZkQzQ1krTE1KU1pMOW5QenR2czlqTjhsME9BSDFna0VHZll3bjhjN3NzNXdBc1E5RER4ckROdnpqMGpnWERWMENJY1pKSElmMFRjaU91c29sRExKS0REL3V0NUhwQk0xdmx0WXpnYlNXTlEwVkE3RXNLbDZ3Y092dFQwZHJpMWMxYWk0WnVFcGtmaEJmVjBhRU8wU09SRE96TksydFFsTFV1ZVNMdXVZUVkzMDM3ZzBOWm4rL21VazRuN1lXdUg2SjRVYk53TTN2R1had2NTM05TaHZ4ekxmWlNSekJDcTUzVDZ1YVU4V1FGMmFieTFndWF5MnVyaWVuTXdlTVAvVG1xRDkwQkFBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["MovieID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Title"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Genres"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Year"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[0]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
+<pre class="r"><code>tmp = rowSums(genre_matrix)
+summary(tmp)
+
+movies[which(tmp==6), ]
+movies[which(tmp==5), ]</code></pre>
+
 <p>For illustration purpose only, let’s assume <code>movies</code> contains all the movies available to users from 1919 to 2000. Then we can compute the cumulative percentages of the 18 genres over year from 1919 to 2000 and store them in the 81-by-19 matrix <code>tmp</code>. For example, till 2000, users can access about 7.8% Action, 4.4% Adventure, 25% Drama, etc. A graphical display of such CDF over 10 generes are displayed below.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
