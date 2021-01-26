@@ -297,9 +297,9 @@ abline(test.err.Bayes, 0, col=&quot;purple&quot;)</code></pre>
 <p>Generate the 20 centers, 10 for each group.</p>
 <pre class="r"><code>csize = 10;       # number of centers
 p = 2;      
-s = 1;      # sd for generating the centers within each class                    
-m1 = matrix(rnorm(csize*p), csize, p)*s + cbind( rep(1,csize), rep(0,csize));
-m0 = matrix(rnorm(csize*p), csize, p)*s + cbind( rep(0,csize), rep(1,csize));</code></pre>
+sigma = 1;      # sd for generating the centers 
+m1 = matrix(rnorm(csize*p), csize, p)*sigma + cbind( rep(1,csize), rep(0,csize));
+m0 = matrix(rnorm(csize*p), csize, p)*sigma + cbind( rep(0,csize), rep(1,csize));</code></pre>
 <p>Generate training data.</p>
 <pre class="r"><code>n=100;  
 # Randomly allocate the n samples for class 1  to the 10 clusters
