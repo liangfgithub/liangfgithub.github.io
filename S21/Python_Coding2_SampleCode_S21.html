@@ -13211,12 +13211,11 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">MyLasso</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lam_seq</span><span class="p">,</span> <span class="n">maxit</span> <span class="o">=</span> <span class="mi">500</span><span class="p">):</span>
     
-    <span class="c1"># X: n-by-p design matrix without the intercept y:</span>
-    <span class="c1"># n-by-1 response vector lam.seq: sequence of</span>
-    <span class="c1"># lambda values </span>
-    <span class="c1"># maxit: number of updates for each lambda </span>
+    <span class="c1"># X: n-by-p design matrix without the intercept </span>
+    <span class="c1"># y: n-by-1 response vector </span>
     <span class="c1"># lam_seq: sequence of lambda values </span>
     <span class="c1"># maxit: number of updates for each lambda </span>
+ 
     <span class="c1"># Center/Scale X</span>
     <span class="c1"># Center y</span>
   
@@ -13322,7 +13321,8 @@ So to compare results from the two algorithms on an equal footing, we need to sc
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Test-Your-Code">Test Your Code<a class="anchor-link" href="#Test-Your-Code">&#182;</a></h2><p>Test your code with the following lambda sequence. The 80 sets of coefficients (including the intercept) are stored in a 14-by-80 matrix <code>myout</code>.</p>
+<h2 id="Test-Your-Code">Test Your Code<a class="anchor-link" href="#Test-Your-Code">&#182;</a></h2><p>Test your code with the following lambda sequence. If you want to use <code>np.logspace</code>, please change the base to be <code>e</code>; the default setting is 10.</p>
+<p>The 80 sets of coefficients (including the intercept) are stored in a 14-by-80 matrix <code>myout</code>.</p>
 
 </div>
 </div>
