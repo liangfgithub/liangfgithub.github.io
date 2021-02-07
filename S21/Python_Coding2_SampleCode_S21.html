@@ -13213,20 +13213,30 @@ div#notebook {
     
     <span class="c1"># X: n-by-p design matrix without the intercept y:</span>
     <span class="c1"># n-by-1 response vector lam.seq: sequence of</span>
-    <span class="c1"># lambda values maxit: number of updates for each lambda </span>
+    <span class="c1"># lambda values </span>
+    <span class="c1"># maxit: number of updates for each lambda </span>
+    <span class="c1"># lam_seq: sequence of lambda values </span>
+    <span class="c1"># maxit: number of updates for each lambda </span>
+    <span class="c1"># Center/Scale X</span>
+    <span class="c1"># Center y</span>
   
     <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">nlam</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lam_seq</span><span class="p">)</span>
-    <span class="n">y_mean</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">X_mean</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">X_sd</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">Xs</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">X_sd</span>
+    
+    <span class="c1">##############################</span>
+    <span class="c1"># YOUR CODE: </span>
+    <span class="c1"># Record the corresponding means and scales</span>
+    <span class="c1"># For example, </span>
+    <span class="c1"># y_mean = mean of y</span>
+    <span class="c1"># Xs = centered and scaled X</span>
+    <span class="c1">##############################</span>
     
 
     <span class="c1"># Initilize coef vector b and residual vector r</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">y</span>
     <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nlam</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    
     <span class="c1"># Triple nested loop</span>
     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nlam</span><span class="p">):</span>
         <span class="n">lam</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">lam_seq</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
@@ -13237,9 +13247,13 @@ div#notebook {
                 <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">one_var_lasso</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Xs_j</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
                 <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">Xs_j</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
         <span class="n">B</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">b</span> 
-        
-    <span class="n">B</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">/</span> <span class="n">X_sd</span>
-    <span class="n">B</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_mean</span> <span class="o">-</span> <span class="n">B</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">@</span> <span class="n">X_mean</span>
+    
+    <span class="c1">##############################</span>
+    <span class="c1"># YOUR CODE:</span>
+    <span class="c1"># Scale back the coefficients;</span>
+    <span class="c1"># Update the intercepts stored in B[, 1]</span>
+    <span class="c1">##############################</span>
+    
     <span class="k">return</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 
