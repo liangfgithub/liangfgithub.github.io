@@ -288,7 +288,7 @@ testSetIndex = myIndex[testSetIndex]</code></pre>
         foldSize, foldNum)
     result = list()
     result$bestK = max(KVector[cvKNNAveErrorRates == min(cvKNNAveErrorRates)])
-    result$cvError = cvKNNAveErrorRates[result$bestK]
+    result$cvError = cvKNNAveErrorRates[KVector == result$bestK]
     result
 }</code></pre>
 <p>Report the chosen K and the misclassification rates on training/test and draw the corresponding decision boundary.</p>
