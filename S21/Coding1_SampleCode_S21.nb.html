@@ -3136,7 +3136,7 @@ testSetIndex = myIndex[testSetIndex]</code></pre>
                               foldNum)
   result = list()
   result$bestK = max(KVector[cvKNNAveErrorRates == min(cvKNNAveErrorRates)])
-  result$cvError = cvKNNAveErrorRates[result$bestK]
+  result$cvError = cvKNNAveErrorRates[KVector == result$bestK]
   result
 }</code></pre>
 <!-- rnb-source-end -->
