@@ -2962,6 +2962,18 @@ myEM &lt;- function(data, itmax, G, para){
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Set the number of priting digits to be eight.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyhkaWdpdHM9OClcbm9wdGlvbnMoKSRkaWdpdHNcbmBgYCJ9 -->
+<pre class="r"><code>options(digits=8)
+options()$digits</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDhcbiJ9 -->
+<pre><code>[1] 8</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="test-your-function" class="section level2">
 <h2>Test your function</h2>
@@ -2970,19 +2982,9 @@ myEM &lt;- function(data, itmax, G, para){
 <h3>Load data</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtY2x1c3QpXG5gYGAifQ== -->
-<pre class="r"><code>library(mclust)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgIF9fICBfX19fX19fX19fXyAgICBfXyAgX19fX19fX19fX19fX1xuICAgLyAgfC8gIC8gX19fXy8gLyAgIC8gLyAvIC8gX19fL18gIF9fL1xuICAvIC98Xy8gLyAvICAgLyAvICAgLyAvIC8gL1xcX18gXFwgLyAvICAgXG4gLyAvICAvIC8gL19fXy8gL19fXy8gL18vIC9fX18vIC8vIC8gICAgXG4vXy8gIC9fL1xcX19fXy9fX19fXy9cXF9fX18vL19fX18vL18vICAgIHZlcnNpb24gNS40LjZcblR5cGUgJ2NpdGF0aW9uKFwibWNsdXN0XCIpJyBmb3IgY2l0aW5nIHRoaXMgUiBwYWNrYWdlIGluIHB1YmxpY2F0aW9ucy5cbiJ9 -->
-<pre><code>    __  ___________    __  _____________
-   /  |/  / ____/ /   / / / / ___/_  __/
-  / /|_/ / /   / /   / / / /\__ \ / /   
- / /  / / /___/ /___/ /_/ /___/ // /    
-/_/  /_/\____/_____/\____//____//_/    version 5.4.6
-Type &#39;citation(&quot;mclust&quot;)&#39; for citing this R package in publications.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGltKGZhaXRoZnVsKVxuYGBgIn0= -->
-<pre class="r"><code>dim(faithful)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtY2x1c3QpXG5kaW0oZmFpdGhmdWwpXG5gYGAifQ== -->
+<pre class="r"><code>library(mclust)
+dim(faithful)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI3MiAgIDJcbiJ9 -->
 <pre><code>[1] 272   2</code></pre>
@@ -3033,19 +3035,19 @@ ini0 &lt;- mstep(modelName=&quot;EEE&quot;, faithful , Z)$parameters</code></pre
               Sigma = ini0$variance$Sigma)
 para0</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjUgMC41XG5cbiRtZWFuXG4gICAgICAgICAgICAgIFssMV0gICAgICBbLDJdXG5lcnVwdGlvbnMgIDMuNDY3NzUgIDMuNTA3ODE2XG53YWl0aW5nICAgNzAuMTMyMzUgNzEuNjYxNzY1XG5cbiRTaWdtYVxuICAgICAgICAgIGVydXB0aW9ucyAgd2FpdGluZ1xuZXJ1cHRpb25zICAxLjI5NzUzOCAgMTMuOTExMVxud2FpdGluZyAgIDEzLjkxMTA5OSAxODMuNTU5MFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjUgMC41XG5cbiRtZWFuXG4gICAgICAgICAgICAgICBbLDFdICAgICAgIFssMl1cbmVydXB0aW9ucyAgMy40Njc3NTAgIDMuNTA3ODE2Mlxud2FpdGluZyAgIDcwLjEzMjM1MyA3MS42NjE3NjQ3XG5cbiRTaWdtYVxuICAgICAgICAgICBlcnVwdGlvbnMgICAgd2FpdGluZ1xuZXJ1cHRpb25zICAxLjI5NzUzNzYgIDEzLjkxMTA5OVxud2FpdGluZyAgIDEzLjkxMTA5OTQgMTgzLjU1OTA0MFxuIn0= -->
 <pre><code>$prob
 [1] 0.5 0.5
 
 $mean
-              [,1]      [,2]
-eruptions  3.46775  3.507816
-waiting   70.13235 71.661765
+               [,1]       [,2]
+eruptions  3.467750  3.5078162
+waiting   70.132353 71.6617647
 
 $Sigma
-          eruptions  waiting
-eruptions  1.297538  13.9111
-waiting   13.911099 183.5590</code></pre>
+           eruptions    waiting
+eruptions  1.2975376  13.911099
+waiting   13.9110994 183.559040</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3061,19 +3063,19 @@ waiting   13.911099 183.5590</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlFTShkYXRhPWZhaXRoZnVsLCBpdG1heD0yMCwgRz1LLCBwYXJhPXBhcmEwKVxuYGBgIn0= -->
 <pre class="r"><code>myEM(data=faithful, itmax=20, G=K, para=para0)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjUwMDYyOCAwLjQ5OTM3MlxuXG4kbWVhblxuICAgICAgICAgICAgICAgWywxXSAgICAgIFssMl1cbmVydXB0aW9ucyAgMy40Njc2MzkgIDMuNTA3OTc4XG53YWl0aW5nICAgNzAuMTE4MDkxIDcxLjY3Nzk4NlxuXG4kU2lnbWFcbiAgICAgICAgICBlcnVwdGlvbnMgICB3YWl0aW5nXG5lcnVwdGlvbnMgIDEuMjk3NTMyICAxMy45MTA2OVxud2FpdGluZyAgIDEzLjkxMDY4OCAxODMuNTM1NTBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjUwMDYyODA0IDAuNDk5MzcxOTZcblxuJG1lYW5cbiAgICAgICAgICAgICAgIFssMV0gICAgICAgWywyXVxuZXJ1cHRpb25zICAzLjQ2NzYzOSAgMy41MDc5Nzc4XG53YWl0aW5nICAgNzAuMTE4MDkxIDcxLjY3Nzk4NjBcblxuJFNpZ21hXG4gICAgICAgICAgIGVydXB0aW9ucyAgICB3YWl0aW5nXG5lcnVwdGlvbnMgIDEuMjk3NTMyMSAgMTMuOTEwNjg4XG53YWl0aW5nICAgMTMuOTEwNjg3OCAxODMuNTM1NDk4XG4ifQ== -->
 <pre><code>$prob
-[1] 0.500628 0.499372
+[1] 0.50062804 0.49937196
 
 $mean
-               [,1]      [,2]
-eruptions  3.467639  3.507978
-waiting   70.118091 71.677986
+               [,1]       [,2]
+eruptions  3.467639  3.5079778
+waiting   70.118091 71.6779860
 
 $Sigma
-          eruptions   waiting
-eruptions  1.297532  13.91069
-waiting   13.910688 183.53550</code></pre>
+           eruptions    waiting
+eruptions  1.2975321  13.910688
+waiting   13.9106878 183.535498</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3088,19 +3090,19 @@ waiting   13.910688 183.53550</code></pre>
            parameters = ini0)$parameters
 list(Rout$pro, Rout$mean, Rout$variance$Sigma)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAwLjUwMDYyOCAwLjQ5OTM3MlxuXG5bWzJdXVxuICAgICAgICAgICAgICAgWywxXSAgICAgIFssMl1cbmVydXB0aW9ucyAgMy40Njc2MzkgIDMuNTA3OTc4XG53YWl0aW5nICAgNzAuMTE4MDkxIDcxLjY3Nzk4NlxuXG5bWzNdXVxuICAgICAgICAgIGVydXB0aW9ucyAgIHdhaXRpbmdcbmVydXB0aW9ucyAgMS4yOTc1MzIgIDEzLjkxMDY5XG53YWl0aW5nICAgMTMuOTEwNjg4IDE4My41MzU1MFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAwLjUwMDYyODA0IDAuNDk5MzcxOTZcblxuW1syXV1cbiAgICAgICAgICAgICAgIFssMV0gICAgICAgWywyXVxuZXJ1cHRpb25zICAzLjQ2NzYzOSAgMy41MDc5Nzc4XG53YWl0aW5nICAgNzAuMTE4MDkxIDcxLjY3Nzk4NjBcblxuW1szXV1cbiAgICAgICAgICAgZXJ1cHRpb25zICAgIHdhaXRpbmdcbmVydXB0aW9ucyAgMS4yOTc1MzIxICAxMy45MTA2ODhcbndhaXRpbmcgICAxMy45MTA2ODc4IDE4My41MzU0OThcbiJ9 -->
 <pre><code>[[1]]
-[1] 0.500628 0.499372
+[1] 0.50062804 0.49937196
 
 [[2]]
-               [,1]      [,2]
-eruptions  3.467639  3.507978
-waiting   70.118091 71.677986
+               [,1]       [,2]
+eruptions  3.467639  3.5079778
+waiting   70.118091 71.6779860
 
 [[3]]
-          eruptions   waiting
-eruptions  1.297532  13.91069
-waiting   13.910688 183.53550</code></pre>
+           eruptions    waiting
+eruptions  1.2975321  13.910688
+waiting   13.9106878 183.535498</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3125,19 +3127,19 @@ para0 &lt;- list(prob = ini0$pro,
               Sigma = ini0$variance$Sigma)
 para0</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjMwNTE0NzEgMC4zNDkyNjQ3IDAuMzQ1NTg4MlxuXG4kbWVhblxuICAgICAgICAgICAgICAgWywxXSAgICAgIFssMl0gICAgICBbLDNdXG5lcnVwdGlvbnMgIDMuNDQ1OTY0ICAzLjYyMTcwNSAgMy4zODkzNjJcbndhaXRpbmcgICA2OS44NDMzNzMgNzIuMTU3ODk1IDcwLjU1MzE5MVxuXG4kU2lnbWFcbiAgICAgICAgICBlcnVwdGlvbnMgIHdhaXRpbmdcbmVydXB0aW9ucyAgMS4yODc3OTMgIDEzLjg0MjNcbndhaXRpbmcgICAxMy44NDIzMDIgMTgzLjIwODlcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjMwNTE0NzA2IDAuMzQ5MjY0NzEgMC4zNDU1ODgyNFxuXG4kbWVhblxuICAgICAgICAgICAgICAgIFssMV0gICAgICAgWywyXSAgICAgICBbLDNdXG5lcnVwdGlvbnMgIDMuNDQ1OTYzOSAgMy42MjE3MDUzICAzLjM4OTM2MTdcbndhaXRpbmcgICA2OS44NDMzNzM1IDcyLjE1Nzg5NDcgNzAuNTUzMTkxNVxuXG4kU2lnbWFcbiAgICAgICAgICAgZXJ1cHRpb25zICAgIHdhaXRpbmdcbmVydXB0aW9ucyAgMS4yODc3OTM1ICAxMy44NDIzMDJcbndhaXRpbmcgICAxMy44NDIzMDIwIDE4My4yMDg5MzJcbiJ9 -->
 <pre><code>$prob
-[1] 0.3051471 0.3492647 0.3455882
+[1] 0.30514706 0.34926471 0.34558824
 
 $mean
-               [,1]      [,2]      [,3]
-eruptions  3.445964  3.621705  3.389362
-waiting   69.843373 72.157895 70.553191
+                [,1]       [,2]       [,3]
+eruptions  3.4459639  3.6217053  3.3893617
+waiting   69.8433735 72.1578947 70.5531915
 
 $Sigma
-          eruptions  waiting
-eruptions  1.287793  13.8423
-waiting   13.842302 183.2089</code></pre>
+           eruptions    waiting
+eruptions  1.2877935  13.842302
+waiting   13.8423020 183.208932</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3153,19 +3155,19 @@ waiting   13.842302 183.2089</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlFTShkYXRhPWZhaXRoZnVsLCBpdG1heD0yMCwgRz1LLCBwYXJhPXBhcmEwKVxuYGBgIn0= -->
 <pre class="r"><code>myEM(data=faithful, itmax=20, G=K, para=para0)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjMwNTEyNDYgMC4zNDk3OTY3IDAuMzQ1MDc4N1xuXG4kbWVhblxuICAgICAgICAgICAgICAgWywxXSAgICAgWywyXSAgICAgWywzXVxuZXJ1cHRpb25zICAzLjQ0ODYyOSAgMy42MDQ1NCAgMy40MDQwNVxud2FpdGluZyAgIDY5LjkwOTE4NSA3MS44MTg3NyA3MC44MzYyNFxuXG4kU2lnbWFcbiAgICAgICAgICBlcnVwdGlvbnMgICB3YWl0aW5nXG5lcnVwdGlvbnMgIDEuMjkwMjgzICAxMy44NzUyMlxud2FpdGluZyAgIDEzLjg3NTIxNiAxODMuNTQ3NjBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHByb2JcblsxXSAwLjMwNTEyNDU5IDAuMzQ5Nzk2NzAgMC4zNDUwNzg3MVxuXG4kbWVhblxuICAgICAgICAgICAgICAgIFssMV0gICAgICAgWywyXSAgICAgICBbLDNdXG5lcnVwdGlvbnMgIDMuNDQ4NjI5MyAgMy42MDQ1NDA1ICAzLjQwNDA0OThcbndhaXRpbmcgICA2OS45MDkxODQ4IDcxLjgxODc3MDcgNzAuODM2MjQwNFxuXG4kU2lnbWFcbiAgICAgICAgICAgZXJ1cHRpb25zICAgIHdhaXRpbmdcbmVydXB0aW9ucyAgMS4yOTAyODMyICAxMy44NzUyMTZcbndhaXRpbmcgICAxMy44NzUyMTU3IDE4My41NDc1OThcbiJ9 -->
 <pre><code>$prob
-[1] 0.3051246 0.3497967 0.3450787
+[1] 0.30512459 0.34979670 0.34507871
 
 $mean
-               [,1]     [,2]     [,3]
-eruptions  3.448629  3.60454  3.40405
-waiting   69.909185 71.81877 70.83624
+                [,1]       [,2]       [,3]
+eruptions  3.4486293  3.6045405  3.4040498
+waiting   69.9091848 71.8187707 70.8362404
 
 $Sigma
-          eruptions   waiting
-eruptions  1.290283  13.87522
-waiting   13.875216 183.54760</code></pre>
+           eruptions    waiting
+eruptions  1.2902832  13.875216
+waiting   13.8752157 183.547598</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -3180,26 +3182,26 @@ waiting   13.875216 183.54760</code></pre>
            parameters = ini0)$parameters
 list(Rout$pro, Rout$mean, Rout$variance$Sigma)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAwLjMwNTEyNDYgMC4zNDk3OTY3IDAuMzQ1MDc4N1xuXG5bWzJdXVxuICAgICAgICAgICAgICAgWywxXSAgICAgWywyXSAgICAgWywzXVxuZXJ1cHRpb25zICAzLjQ0ODYyOSAgMy42MDQ1NCAgMy40MDQwNVxud2FpdGluZyAgIDY5LjkwOTE4NSA3MS44MTg3NyA3MC44MzYyNFxuXG5bWzNdXVxuICAgICAgICAgIGVydXB0aW9ucyAgIHdhaXRpbmdcbmVydXB0aW9ucyAgMS4yOTAyODMgIDEzLjg3NTIyXG53YWl0aW5nICAgMTMuODc1MjE2IDE4My41NDc2MFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAwLjMwNTEyNDU5IDAuMzQ5Nzk2NzAgMC4zNDUwNzg3MVxuXG5bWzJdXVxuICAgICAgICAgICAgICAgIFssMV0gICAgICAgWywyXSAgICAgICBbLDNdXG5lcnVwdGlvbnMgIDMuNDQ4NjI5MyAgMy42MDQ1NDA1ICAzLjQwNDA0OThcbndhaXRpbmcgICA2OS45MDkxODQ4IDcxLjgxODc3MDcgNzAuODM2MjQwNFxuXG5bWzNdXVxuICAgICAgICAgICBlcnVwdGlvbnMgICAgd2FpdGluZ1xuZXJ1cHRpb25zICAxLjI5MDI4MzIgIDEzLjg3NTIxNlxud2FpdGluZyAgIDEzLjg3NTIxNTcgMTgzLjU0NzU5OFxuIn0= -->
 <pre><code>[[1]]
-[1] 0.3051246 0.3497967 0.3450787
+[1] 0.30512459 0.34979670 0.34507871
 
 [[2]]
-               [,1]     [,2]     [,3]
-eruptions  3.448629  3.60454  3.40405
-waiting   69.909185 71.81877 70.83624
+                [,1]       [,2]       [,3]
+eruptions  3.4486293  3.6045405  3.4040498
+waiting   69.9091848 71.8187707 70.8362404
 
 [[3]]
-          eruptions   waiting
-eruptions  1.290283  13.87522
-waiting   13.875216 183.54760</code></pre>
+           eruptions    waiting
+eruptions  1.2902832  13.875216
+waiting   13.8752157 183.547598</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUFNMIChTMjEpIENvZGluZyBBc3NpZ25tZW50IDQiCmRhdGU6ICIwMy8xMi8yMDIxIgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIHRoZW1lOiByZWFkYWJsZQogICAgdG9jOiBUUlVFCiAgICB0b2NfZmxvYXQ6IFRSVUUKLS0tCgojIyBQcmVwYXJlIHlvdXIgZnVuY3Rpb24KCllvdSBzaG91bGQgcHJlcGFyZSBhIGZ1bmN0aW9uIHRvIHBlcmZvcm0gdGhlIEUtc3RlcCwgYSBmdW5jdGlvbiB0byBwZXJmb3JtIHRoZSBNLXN0ZXAsIGFuZCB0aGVuIGl0ZXJhdGl2ZWx5IGNhbGwgdGhlc2UgdHdvIGZ1bmN0aW9ucyBpbiBgbXlFTWAuIAoKYGBge3IgZXZhbCA9IEZBTFNFfQpFc3RlcCA8LSBmdW5jdGlvbihkYXRhLCBHLCBwYXJhKXsKICAjIFlvdXIgQ29kZQogICMgUmV0dXJuIHRoZSBuLWJ5LUcgcHJvYmFiaWxpdHkgbWF0cml4CiAgfQoKTXN0ZXAgPC0gZnVuY3Rpb24oZGF0YSwgRywgcGFyYSwgcG9zdC5wcm9iKXsgCiAgIyBZb3VyIENvZGUKICAjIFJldHVybiB0aGUgdXBkYXRlZCBwYXJhbWV0ZXJzCiAgfQoKbXlFTSA8LSBmdW5jdGlvbihkYXRhLCBpdG1heCwgRywgcGFyYSl7CiAgIyBpdG1heDogbnVtIG9mIGl0ZXJhdGlvbnMKICAjIEc6ICAgICBudW0gb2YgY29tcG9uZW50cwogICMgcGFyYTogIGxpc3Qgb2YgcGFyYW1ldGVycyAocHJvYiwgbWVhbiwgU2lnbWEpCiAgZm9yKHQgaW4gMTppdG1heCl7CiAgICBwb3N0LnByb2IgPC0gRXN0ZXAoZGF0YSwgRywgcGFyYSkKICAgIHBhcmEgPC0gTXN0ZXAoZGF0YSwgRywgcGFyYSwgcG9zdC5wcm9iKQogIH0KICByZXR1cm4ocGFyYSkKfQpgYGAKCiMjIFRlc3QgeW91ciBmdW5jdGlvbgpUZXN0IHlvdXIgZnVuY3Rpb24gd2l0aCBkYXRhIGBmYWl0aGZ1bGAgZnJvbSBgbWNsdXN0YC4gVGhlIG1peHR1cmUgbW9kZWwgaW4gQ29kaW5nNC5wZGYgY29ycmVwb25kcyB0byBgbW9kZWxOYW1lID0gIkVFRSJgIGluIGBtY2x1c3RgICh5b3UgZG8gbm90IG5lZWQgdG8ga25vdyB3aHkpLgoKIyMjIExvYWQgIGRhdGEKCmBgYHtyIHBhZ2VkLnByaW50PUZBTFNFfQpsaWJyYXJ5KG1jbHVzdCkKZGltKGZhaXRoZnVsKQpoZWFkKGZhaXRoZnVsKQpuIDwtIG5yb3coZmFpdGhmdWwpCmBgYAoKCiMjIyBUd28gY2x1c3RlcnMKCkNvbXBhcmUgdGhlIGVzdGltYXRlZCBwYXJhbWV0ZXJzIHJldHVybmVkIGJ5ICBgbXlFTWAgYW5kIHRoZSBvbmVzIHJldHVybmVkIGJ5IHRoZSBFTSBhbGdvcml0aG0gaW4gYG1jbHVzdGAgYWZ0ZXIgMjAgaXRlcmF0aW9ucy4gCgojIyMjIEluaXRpYWxpemF0aW9uCgpXZSBpbml0aWFsaXplIHBhcmFtZXRlcnMgYnkgZmlyc3QgcmFuZG9tbHkgYXNzaWduaW5nIHRoZSBuIHNhbXBsZXMgaW50byB0d28gZ3JvdXBzIGFuZCB0aGVuIHJ1bm5pbmcgb25lIGl0ZXJhdGlvbiBvZiB0aGUgYnVpbHQtaW4gTS1zdGVwLiAKCmBgYHtyfQpLIDwtIDIKc2V0LnNlZWQoMjM0KSAgIyByZXBsYWNlIDIzNCBieSB0aGUgbGFzdCA0LWRpZyBvZiB5b3VyIFVuaXZlcnNpdHkgSUQKZ0lEIDwtIHNhbXBsZSgxOkssIG4sIHJlcGxhY2UgPSBUUlVFKQpaIDwtIG1hdHJpeCgwLCBuLCBLKQpmb3IoayBpbiAxOkspCiAgWltnSUQgPT0gaywga10gPC0gMSAKaW5pMCA8LSBtc3RlcChtb2RlbE5hbWU9IkVFRSIsIGZhaXRoZnVsICwgWikkcGFyYW1ldGVycwpgYGAKCkhlcmUgYXJlIHRoZSBpbml0aWFsIHZhbHVlcyB3ZSB1c2UgZm9yIChwcm9iLCBtZWFuLCBTaWdtYSkuIApgYGB7cn0KcGFyYTAgPC0gbGlzdChwcm9iID0gaW5pMCRwcm8sIAogICAgICAgICAgICAgIG1lYW4gPSBpbmkwJG1lYW4sIAogICAgICAgICAgICAgIFNpZ21hID0gaW5pMCR2YXJpYW5jZSRTaWdtYSkKcGFyYTAKYGBgCgojIyMjIENvbXBhcmUgcmVzdWx0cwoKQ29tcGFyZSB0aGUgZXN0aW1hdGVkIHBhcmFtZXRlcnMgcmV0dXJuZWQgYnkgIGBteUVNYCBhbmQgdGhlIG9uZXMgcmV0dXJuZWQgYnkgdGhlIEVNIGFsZ29yaXRobSBpbiBgbWNsdXN0YCBhZnRlciAyMCBpdGVyYXRpb25zLiAKCiogT3V0cHV0IGZyb20gYG15RU1gCgpgYGB7cn0KbXlFTShkYXRhPWZhaXRoZnVsLCBpdG1heD0yMCwgRz1LLCBwYXJhPXBhcmEwKQpgYGAKCiogT3V0cHV0IGZyb20gYG1jbHVzdGAKYGBge3J9ClJvdXQgPC0gZW0obW9kZWxOYW1lID0gIkVFRSIsIGRhdGEgPSBmYWl0aGZ1bCwKICAgICAgICAgICBjb250cm9sID0gZW1Db250cm9sKGVwcz0wLCB0b2w9MCwgaXRtYXggPSAyMCksIAogICAgICAgICAgIHBhcmFtZXRlcnMgPSBpbmkwKSRwYXJhbWV0ZXJzCmxpc3QoUm91dCRwcm8sIFJvdXQkbWVhbiwgUm91dCR2YXJpYW5jZSRTaWdtYSkKYGBgCgoKIyMjIFRocmVlIGNsdXN0ZXJzCgojIyMjIEluaXRpYWxpemF0aW9uCgpgYGB7cn0KSyA8LSAzCnNldC5zZWVkKDIzNCkgICMgcmVwbGFjZSAyMzQgYnkgdGhlIGxhc3QgNC1kaWcgb2YgeW91ciBVbml2ZXJzaXR5IElECmdJRCA8LSBzYW1wbGUoMTpLLCBuLCByZXBsYWNlID0gVFJVRSkKWiA8LSBtYXRyaXgoMCwgbiwgSykKZm9yKGsgaW4gMTpLKQogIFpbZ0lEID09IGssIGtdIDwtIDEgCmluaTAgPC0gbXN0ZXAobW9kZWxOYW1lPSJFRUUiLCBmYWl0aGZ1bCAsIFopJHBhcmFtZXRlcnMKcGFyYTAgPC0gbGlzdChwcm9iID0gaW5pMCRwcm8sIAogICAgICAgICAgICAgIG1lYW4gPSBpbmkwJG1lYW4sIAogICAgICAgICAgICAgIFNpZ21hID0gaW5pMCR2YXJpYW5jZSRTaWdtYSkKcGFyYTAKYGBgCgojIyMjIENvbXBhcmUgcmVzdWx0cwoKQ29tcGFyZSB0aGUgZXN0aW1hdGVkIHBhcmFtZXRlcnMgcmV0dXJuZWQgYnkgIGBteUVNYCBhbmQgdGhlIG9uZXMgcmV0dXJuZWQgYnkgdGhlIEVNIGFsZ29yaXRobSBpbiBgbWNsdXN0YCBhZnRlciAyMCBpdGVyYXRpb25zLiAKCiogT3V0cHV0IGZyb20gYG15RU1gCgpgYGB7cn0KbXlFTShkYXRhPWZhaXRoZnVsLCBpdG1heD0yMCwgRz1LLCBwYXJhPXBhcmEwKQpgYGAKCiogT3V0cHV0IGZyb20gYG1jbHVzdGAKYGBge3J9ClJvdXQgPC0gZW0obW9kZWxOYW1lID0gIkVFRSIsIGRhdGEgPSBmYWl0aGZ1bCwKICAgICAgICAgICBjb250cm9sID0gZW1Db250cm9sKGVwcz0wLCB0b2w9MCwgaXRtYXggPSAyMCksIAogICAgICAgICAgIHBhcmFtZXRlcnMgPSBpbmkwKSRwYXJhbWV0ZXJzCmxpc3QoUm91dCRwcm8sIFJvdXQkbWVhbiwgUm91dCR2YXJpYW5jZSRTaWdtYSkKCnRtcCA8LSBlbShtb2RlbE5hbWUgPSAiRUVFIiwgZGF0YSA9IGZhaXRoZnVsLAogICAgICAgICAgIHBhcmFtZXRlcnMgPSBpbmkwKSRwYXJhbWV0ZXJzCmxpc3QodG1wJHBybywgdG1wJG1lYW4sIHRtcCR2YXJpYW5jZSRTaWdtYSkKYGBg</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUFNMIChTMjEpIENvZGluZyBBc3NpZ25tZW50IDQiCmRhdGU6ICIwMy8xMi8yMDIxIgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIHRoZW1lOiByZWFkYWJsZQogICAgdG9jOiBUUlVFCiAgICB0b2NfZmxvYXQ6IFRSVUUKLS0tCgojIyBQcmVwYXJlIHlvdXIgZnVuY3Rpb24KCllvdSBzaG91bGQgcHJlcGFyZSBhIGZ1bmN0aW9uIHRvIHBlcmZvcm0gdGhlIEUtc3RlcCwgYSBmdW5jdGlvbiB0byBwZXJmb3JtIHRoZSBNLXN0ZXAsIGFuZCB0aGVuIGl0ZXJhdGl2ZWx5IGNhbGwgdGhlc2UgdHdvIGZ1bmN0aW9ucyBpbiBgbXlFTWAuIAoKYGBge3IgZXZhbCA9IEZBTFNFfQpFc3RlcCA8LSBmdW5jdGlvbihkYXRhLCBHLCBwYXJhKXsKICAjIFlvdXIgQ29kZQogICMgUmV0dXJuIHRoZSBuLWJ5LUcgcHJvYmFiaWxpdHkgbWF0cml4CiAgfQoKTXN0ZXAgPC0gZnVuY3Rpb24oZGF0YSwgRywgcGFyYSwgcG9zdC5wcm9iKXsgCiAgIyBZb3VyIENvZGUKICAjIFJldHVybiB0aGUgdXBkYXRlZCBwYXJhbWV0ZXJzCiAgfQoKbXlFTSA8LSBmdW5jdGlvbihkYXRhLCBpdG1heCwgRywgcGFyYSl7CiAgIyBpdG1heDogbnVtIG9mIGl0ZXJhdGlvbnMKICAjIEc6ICAgICBudW0gb2YgY29tcG9uZW50cwogICMgcGFyYTogIGxpc3Qgb2YgcGFyYW1ldGVycyAocHJvYiwgbWVhbiwgU2lnbWEpCiAgZm9yKHQgaW4gMTppdG1heCl7CiAgICBwb3N0LnByb2IgPC0gRXN0ZXAoZGF0YSwgRywgcGFyYSkKICAgIHBhcmEgPC0gTXN0ZXAoZGF0YSwgRywgcGFyYSwgcG9zdC5wcm9iKQogIH0KICByZXR1cm4ocGFyYSkKfQpgYGAKClNldCB0aGUgbnVtYmVyIG9mIHByaXRpbmcgZGlnaXRzIHRvIGJlIGVpZ2h0LiAKYGBge3J9Cm9wdGlvbnMoZGlnaXRzPTgpCm9wdGlvbnMoKSRkaWdpdHMKYGBgCgojIyBUZXN0IHlvdXIgZnVuY3Rpb24KVGVzdCB5b3VyIGZ1bmN0aW9uIHdpdGggZGF0YSBgZmFpdGhmdWxgIGZyb20gYG1jbHVzdGAuIFRoZSBtaXh0dXJlIG1vZGVsIGluIENvZGluZzQucGRmIGNvcnJlcG9uZHMgdG8gYG1vZGVsTmFtZSA9ICJFRUUiYCBpbiBgbWNsdXN0YCAoeW91IGRvIG5vdCBuZWVkIHRvIGtub3cgd2h5KS4KCiMjIyBMb2FkICBkYXRhCgpgYGB7ciBwYWdlZC5wcmludD1GQUxTRX0KbGlicmFyeShtY2x1c3QpCmRpbShmYWl0aGZ1bCkKaGVhZChmYWl0aGZ1bCkKbiA8LSBucm93KGZhaXRoZnVsKQpgYGAKCgojIyMgVHdvIGNsdXN0ZXJzCgpDb21wYXJlIHRoZSBlc3RpbWF0ZWQgcGFyYW1ldGVycyByZXR1cm5lZCBieSAgYG15RU1gIGFuZCB0aGUgb25lcyByZXR1cm5lZCBieSB0aGUgRU0gYWxnb3JpdGhtIGluIGBtY2x1c3RgIGFmdGVyIDIwIGl0ZXJhdGlvbnMuIAoKIyMjIyBJbml0aWFsaXphdGlvbgoKV2UgaW5pdGlhbGl6ZSBwYXJhbWV0ZXJzIGJ5IGZpcnN0IHJhbmRvbWx5IGFzc2lnbmluZyB0aGUgbiBzYW1wbGVzIGludG8gdHdvIGdyb3VwcyBhbmQgdGhlbiBydW5uaW5nIG9uZSBpdGVyYXRpb24gb2YgdGhlIGJ1aWx0LWluIE0tc3RlcC4gCgpgYGB7cn0KSyA8LSAyCnNldC5zZWVkKDIzNCkgICMgcmVwbGFjZSAyMzQgYnkgdGhlIGxhc3QgNC1kaWcgb2YgeW91ciBVbml2ZXJzaXR5IElECmdJRCA8LSBzYW1wbGUoMTpLLCBuLCByZXBsYWNlID0gVFJVRSkKWiA8LSBtYXRyaXgoMCwgbiwgSykKZm9yKGsgaW4gMTpLKQogIFpbZ0lEID09IGssIGtdIDwtIDEgCmluaTAgPC0gbXN0ZXAobW9kZWxOYW1lPSJFRUUiLCBmYWl0aGZ1bCAsIFopJHBhcmFtZXRlcnMKYGBgCgpIZXJlIGFyZSB0aGUgaW5pdGlhbCB2YWx1ZXMgd2UgdXNlIGZvciAocHJvYiwgbWVhbiwgU2lnbWEpLiAKYGBge3J9CnBhcmEwIDwtIGxpc3QocHJvYiA9IGluaTAkcHJvLCAKICAgICAgICAgICAgICBtZWFuID0gaW5pMCRtZWFuLCAKICAgICAgICAgICAgICBTaWdtYSA9IGluaTAkdmFyaWFuY2UkU2lnbWEpCnBhcmEwCmBgYAoKIyMjIyBDb21wYXJlIHJlc3VsdHMKCkNvbXBhcmUgdGhlIGVzdGltYXRlZCBwYXJhbWV0ZXJzIHJldHVybmVkIGJ5ICBgbXlFTWAgYW5kIHRoZSBvbmVzIHJldHVybmVkIGJ5IHRoZSBFTSBhbGdvcml0aG0gaW4gYG1jbHVzdGAgYWZ0ZXIgMjAgaXRlcmF0aW9ucy4gCgoqIE91dHB1dCBmcm9tIGBteUVNYAoKYGBge3J9Cm15RU0oZGF0YT1mYWl0aGZ1bCwgaXRtYXg9MjAsIEc9SywgcGFyYT1wYXJhMCkKYGBgCgoqIE91dHB1dCBmcm9tIGBtY2x1c3RgCmBgYHtyfQpSb3V0IDwtIGVtKG1vZGVsTmFtZSA9ICJFRUUiLCBkYXRhID0gZmFpdGhmdWwsCiAgICAgICAgICAgY29udHJvbCA9IGVtQ29udHJvbChlcHM9MCwgdG9sPTAsIGl0bWF4ID0gMjApLCAKICAgICAgICAgICBwYXJhbWV0ZXJzID0gaW5pMCkkcGFyYW1ldGVycwpsaXN0KFJvdXQkcHJvLCBSb3V0JG1lYW4sIFJvdXQkdmFyaWFuY2UkU2lnbWEpCmBgYAoKCiMjIyBUaHJlZSBjbHVzdGVycwoKIyMjIyBJbml0aWFsaXphdGlvbgoKYGBge3J9CksgPC0gMwpzZXQuc2VlZCgyMzQpICAjIHJlcGxhY2UgMjM0IGJ5IHRoZSBsYXN0IDQtZGlnIG9mIHlvdXIgVW5pdmVyc2l0eSBJRApnSUQgPC0gc2FtcGxlKDE6SywgbiwgcmVwbGFjZSA9IFRSVUUpClogPC0gbWF0cml4KDAsIG4sIEspCmZvcihrIGluIDE6SykKICBaW2dJRCA9PSBrLCBrXSA8LSAxIAppbmkwIDwtIG1zdGVwKG1vZGVsTmFtZT0iRUVFIiwgZmFpdGhmdWwgLCBaKSRwYXJhbWV0ZXJzCnBhcmEwIDwtIGxpc3QocHJvYiA9IGluaTAkcHJvLCAKICAgICAgICAgICAgICBtZWFuID0gaW5pMCRtZWFuLCAKICAgICAgICAgICAgICBTaWdtYSA9IGluaTAkdmFyaWFuY2UkU2lnbWEpCnBhcmEwCmBgYAoKIyMjIyBDb21wYXJlIHJlc3VsdHMKCkNvbXBhcmUgdGhlIGVzdGltYXRlZCBwYXJhbWV0ZXJzIHJldHVybmVkIGJ5ICBgbXlFTWAgYW5kIHRoZSBvbmVzIHJldHVybmVkIGJ5IHRoZSBFTSBhbGdvcml0aG0gaW4gYG1jbHVzdGAgYWZ0ZXIgMjAgaXRlcmF0aW9ucy4gCgoqIE91dHB1dCBmcm9tIGBteUVNYAoKYGBge3J9Cm15RU0oZGF0YT1mYWl0aGZ1bCwgaXRtYXg9MjAsIEc9SywgcGFyYT1wYXJhMCkKYGBgCgoqIE91dHB1dCBmcm9tIGBtY2x1c3RgCmBgYHtyfQpSb3V0IDwtIGVtKG1vZGVsTmFtZSA9ICJFRUUiLCBkYXRhID0gZmFpdGhmdWwsCiAgICAgICAgICAgY29udHJvbCA9IGVtQ29udHJvbChlcHM9MCwgdG9sPTAsIGl0bWF4ID0gMjApLCAKICAgICAgICAgICBwYXJhbWV0ZXJzID0gaW5pMCkkcGFyYW1ldGVycwpsaXN0KFJvdXQkcHJvLCBSb3V0JG1lYW4sIFJvdXQkdmFyaWFuY2UkU2lnbWEpCmBgYA==</div>
 
 
 </div>
