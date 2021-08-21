@@ -3006,6 +3006,7 @@ traindata = mydata$train
 Ytrain = mydata$Ytrain
 testdata = mydata$testdata
 Ytest = mydata$Ytest
+n = nrow(traindata)
 
 mycol = rep(&quot;blue&quot;, n)
 mycol[Ytrain==0] = &quot;red&quot;
