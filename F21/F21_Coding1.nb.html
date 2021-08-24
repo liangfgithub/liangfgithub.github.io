@@ -3251,7 +3251,7 @@ for(runId in 1:foldNum){
 <pre class="r"><code>cvKNN = function(traindata, Ytrain, foldNum) {
   n = nrow(traindata)
   foldSize = floor(n/foldNum)  
-  KVector = seq(1, (nrow(dataSet) - foldSize), 1)
+  KVector = seq(1, (nrow(traindata) - foldSize), 1)
   cvErrorRates = sapply(KVector, cvKNNAveErrorRate, traindata, Ytrain, foldNum)
   result = list()
   result$bestK = max(KVector[cvErrorRates == min(cvErrorRates)])
