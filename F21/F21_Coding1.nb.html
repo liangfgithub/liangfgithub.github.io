@@ -3025,14 +3025,17 @@ legend(&quot;bottomright&quot;, pch = c(1,1), col = c(&quot;blue&quot;, &quot;re
 <div id="part-i" class="section level2">
 <h2>Part I</h2>
 <p>In the first part of this assignment, you are asked to:</p>
+<blockquote>
 <ol style="list-style-type: decimal">
 <li>Write your own KNN code without using any packages;</li>
 <li>Explain how you handle distance ties and voting ties;</li>
 <li>Test your code with <code>mydata</code> when K = 1, 3, 5; compare your results with the ones from the R command <code>knn</code>.</li>
 </ol>
+</blockquote>
 <p><strong>distance ties</strong> may occur when you have multiple (training) observations that are equidistant from a test observation.</p>
 <p><strong>voting ties</strong> may occur when K is an even number and you have 50% of the k-nearest-neighhors from each of the two classes.</p>
-<p>Display your result on <code>testdata</code> as the following 2-by-2 table for K = 1, 3, 5 and they should match with the results from <code>knn</code>. <strong>Note</strong> that your result will not look the same as the one shown below since the data are different.</p>
+<p>Display your result on <code>testdata</code> as the following 2-by-2 table for K = 1, 3, 5. They should match with the results from <code>knn</code>. If they do not match due to the distance buffer zone employed by R's <code>knn</code>, please demonstrate the mismatch is due to the buffer zone: e.g., show that the predicted probabilities from <code>knn</code> are 0.5; see our discussion on Campuswire.</p>
+
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjbGFzcylcbnRlc3QucHJlZCA9IGtubih0cmFpbmRhdGEsIHRlc3RkYXRhLCBZdHJhaW4sIGsgPSAxKVxudGFibGUoWXRlc3QsIHRlc3QucHJlZClcbmBgYCJ9 -->
@@ -3068,6 +3071,7 @@ Ytest    0    1
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+p><strong>Note</strong> that your result will not look the same as the one shown below since the data are different.</p>
 <hr />
 </div>
 <div id="part-ii" class="section level2">
