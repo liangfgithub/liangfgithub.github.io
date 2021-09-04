@@ -2983,7 +2983,7 @@ dim(X)</code></pre>
     
     # X: n-by-p design matrix without the intercept 
     # y: n-by-1 response vector 
-    # lam.seq: sequence of lambda values 
+    # lam.seq: sequence of lambda values (arranged from large to small)
     # maxit: number of updates for each lambda 
     # Center/Scale X
     # Center y
@@ -2991,8 +2991,7 @@ dim(X)</code></pre>
     n = length(y)
     p = dim(X)[2]
     nlam = length(lam.seq)
-    # arrange lam.seq from large to small
-    lam.seq = sort(lam.seq, decreasing = TRUE)
+    
 
     ##############################
     # YOUR CODE: 
