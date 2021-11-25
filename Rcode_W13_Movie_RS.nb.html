@@ -3140,8 +3140,8 @@ test.pred$rating = NA
 for (u in 1:nrow(test)){
 
     # Read userid and movieid from columns 2 and 3 of test data
-    userid = as.character(test$user[u])
-    movieid = as.character(test$movie[u])
+    userid = as.character(test$User[u])
+    movieid = as.character(test$Movie[u])
     
     rating = rec_list[[userid]][movieid]
     # handle missing values; 2.5 might not be the ideal choice
