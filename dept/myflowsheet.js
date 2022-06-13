@@ -1,4 +1,3 @@
-//var UIUCURL = "https://courses.illinois.edu/schedule/DEFAULT/DEFAULT/DEPARTMENT/COURSE";
 var UIUCURL = "https://courses.illinois.edu/schedule/terms/DEPARTMENT/COURSE";
 
 function clearTable() {
