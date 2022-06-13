@@ -70,20 +70,11 @@ function addElectiveTitle(course_id) {
 	var name = myClass.attr('data-name');
 	var url = myClass.attr('data-url');
 
-	var credits_min = myClass.attr('data-credits-min');
-	var credits_max = myClass.attr('data-credits-max');
-	if (credits_min == credits_max) {
-		credits = " (" + credits_min + ')';
-	}
-	else {
-		credits = " (" + credits_min + '-' + credits_max + ')';
-	}
-
 	if (url) {
-		var text = "<div class='rubric'>" + course + credits + "</div><div class='crs_title'><a href='" + url + "' target='_blank'>" + name + "</a></div>";
+		var text = "<div class='rubric'>" + course +  "</div><div class='crs_title'><a href='" + url + "' target='_blank'>" + name + "</a></div>";
 	}
 	else {
-		var text = "<div class='rubric'>" + course + credits + "</div><div class='crs_title'>" + name + "</div>";
+		var text = "<div class='rubric'>" + course +  "</div><div class='crs_title'>" + name + "</div>";
 	}
 
 	myClass.html(text);
