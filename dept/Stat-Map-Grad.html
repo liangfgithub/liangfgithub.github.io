@@ -41,9 +41,14 @@
 					#99d298 1px,
 					#99d298 30px) !important;
 				}
-
-
-
+			#flowsheet .altreq0 {
+					background: repeating-linear-gradient(
+					45deg,
+					#E0E0E0, 
+					#E0E0E0 1px,
+					#ffffff 1px,
+					#ffffff 30px) !important;
+				}
 	</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -66,25 +71,33 @@
 
 		<ul>
 			<li class="prereq">Course prerequisite chain</li>
+		<!--	<li class="altreq">Course prerequisite chain: One of multiple options; See course description</li> -->
 			<li class="prereq immediate">Immediate prerequisite</li>
+		<!--	<li class="altreq immediate">Immediate prerequisite: One of multiple options; See course description</li> -->
 			<li class="prereq immediate coreq">Credit or concurrent registration required</li>
 		<!--	<li class="coreq">Concurrent registration required</li> -->
 			<li class="postreq">Postrequisite course sequence</li>
+			<li class="altreq0">One of multiple options; See course description</li>
 		</ul>
 
 	</div>
+
 	<div class="table_container">
 		<table id="courseTable" class="table table-sm">
 			<thead>
 			<tr >
-				<th colspan="2" class="text-center border-right">200-300-Series</th>
+				<th colspan="2" class="text-center border-right">100-200-Series</th>
+				<th colspan="1" class="text-center border-right">300-Series</th>
 				<th colspan="4" class="text-center border-right">400-Series</th>
 				<th colspan="3" class="text-center border-right">500-Series</th>
 			</tr>
 			</thead>
 			<tbody>
 			<tr>
-				<td id="MATH">
+				<td id="100-200-level-Math">
+					<div class="item course" data-name="Algebra" data-pre="" data-co="" data-label="MATH 112" data-id="MATH112" data-course-id="1112" data-content="Rapid review of basic techniques of factoring, rational expressions, equations and inequalities; functions and graphs; exponential and logarithm functions; systems of equations; matrices and determinants; polynomials; and the binomial theorem. Prerequisite: An adequate ALEKS placement score as described at http://math.illinois.edu/ALEKS/, demonstrating knowledge of 1.5 units of high school algebra and 1 unit of high school geometry." ></div>
+
+
 					<div class="item course" data-name="Calculus I" data-pre="" data-co="" data-label="MATH 221" data-id="MATH221" data-course-id="1221" data-content="First course in calculus and analytic geometry for students with some calculus background; basic techniques of differentiation and integration with applications including curve sketching; antidifferentation, the Riemann integral, fundamental theorem, exponential and trigonometric functions. Credit is not given for both MATH 221 and either MATH 220 or MATH 234. Prerequisite: An adequate ALEKS placement score as described at http://math.illinois.edu/ALEKS/ and either one year of high school calculus or a minimum score of 2 on the AB Calculus AP exam." ></div>
 
 					<div class="item course" data-name="Calculus II" data-pre="MATH221" data-co="" data-label="MATH 231" data-id="MATH231" data-course-id="1231" data-content="Second course in calculus and analytic geometry: techniques of integration, conic sections, polar coordinates, and infinite series. Prerequisite: MATH 220 or MATH 221. This course satisfies the General Education Criteria for: Quantitative Reasoning I" ></div>
@@ -93,19 +106,30 @@
 
 					<div class="item course" data-name="Linear Algebra w Computat Appl" data-pre="MATH221" data-co="" data-label="MATH 257" data-id="MATH257" data-course-id="1257" data-content="Introductory course incorporating linear algebra concepts with computational tools, with real world applications to science, engineering and data science. Topics include linear equations, matrix operations, vector spaces, linear transformations, eigenvalues, eigenvectors, inner products and norms, orthogonality, linear regression, equilibrium, linear dynamical systems and the singular value decomposition. Credit is not given for both MATH 257 and any of MATH 125, MATH 225, MATH 227, MATH 415 or ASRM 406. Prerequisite: MATH 220 or MATH 221; CS 101 or equivalent programming experience." ></div>
 
-					<div class="item course" data-name="Intro Matrix Theory" data-pre="MATH220 MATH221" data-co="" data-label="MATH 225" data-id="MATH225" data-course-id="1225" data-content="Systems of linear equations, matrices and inverses, determinants, and a glimpse at vector spaces, eigenvalues and eigenvectors. Credit is not given for both MATH 225 and any of MATH 125, ASRM 406, or MATH 415. Prerequisite: MATH 220 or MATH 221; or equivalent." ></div>
-
-					<div class="item course" data-name="Fundamental Mathematics" data-pre="MATH231" data-co="" data-label="MATH 347" data-id="MATH347" data-course-id="1347" data-content="Fundamental ideas used in many areas of mathematics. Topics will include: techniques of proof, mathematical induction, binomial coefficients, rational and irrational numbers, the least upper bound axiom for real numbers, and a rigorous treatment of convergence of sequences and series. This will be supplemented by the instructor from topics available in the various texts. Students will regularly write proofs emphasizing precise reasoning and clear exposition. <b>Credit is not given for both MATH 347 and MATH 348</b>. Prerequisite: MATH 231." ></div>
+					<div class="item course" data-name="Intro Matrix Theory" data-pre="MATH220 MATH221" data-co="" data-label="MATH 225" data-id="MATH225" data-course-id="1225" data-content="Systems of linear equations, matrices and inverses, determinants, and a glimpse at vector spaces, eigenvalues and eigenvectors. Credit is not given for both MATH 225 and any of MATH 125, ASRM 406, or MATH 415. Prerequisite: MATH 220 or MATH 221; or equivalent." ></div>	
 				</td>
 
-				<td id="200-300-level">
+				<td id="100-200-level-Stat">
+					<div class="item course" data-name="Statistics" data-pre="MATH112" data-co="" data-label="STAT 100" data-id="STAT100" data-course-id="2100" data-content="First course in probability and statistics at a precalculus level; emphasizes basic concepts, including descriptive statistics, elementary probability, estimation, and hypothesis testing in both nonparametric and normal models. Credit is not given for both STAT 100 and any one of the following: ECON 202, PSYC 235, or SOC 485. Prerequisite: MATH 112." ></div>
+					
+					<div class="item course" data-name="Data Science Discovery" data-pre="" data-co="" data-label="STAT 107" data-id="STAT107" data-course-id="2107" data-content="Data Science Discovery is the intersection of statistics, computation, and real-world relevance. As a project-driven course, students perform hands-on-analysis of real-world datasets to analyze and discover the impact of the data. Throughout each experience, students reflect on the social issues surrounding data analysis such as privacy and design. Same as CS 107 and IS 107." ></div>
+					
 					<div class="item course" data-name="Statistical Analysis" data-pre="" data-co="" data-label="STAT 200" data-id="STAT200" data-course-id="2200" data-content="Survey of statistical concepts, data analysis, designed and observational studies and statistical models. Statistical computing using a statistical package such as R or a spreadsheet. Topics to be covered include data summary and visualization, study design, elementary probability, categorical data, comparative experiments, multiple linear regression, analysis of variance, statistical inferences and model diagnostics. May be taken as a first statistics course for quantitatively oriented students, or as a second course to follow a basic concepts course. Credit is not given for both STAT 200 and STAT 212." ></div>
 
 					<div class="item course" data-name="Data Science Exploration" data-pre="STAT107" data-co="" data-label="STAT 207" data-id="STAT207" data-course-id="2207" data-content="Explores the data science pipeline from hypothesis formulation, to data collection and management, to analysis and reporting. Topics include data collection, preprocessing and checking for missing data, data summary and visualization, random sampling and probability models, estimating parameters, uncertainty quantification, hypothesis testing, multiple linear and logistic regression modeling, classification, and machine learning approaches for high dimensional data analysis. Students will learn how to implement the methods using Python programming and Git version control. Prerequisite: STAT 107 or consent of instructor." ></div>
 
 					<div class="item course" data-name="Biostatistics" data-pre="" data-co="" data-label="STAT 212" data-id="STAT212" data-course-id="2212" data-content="Application of statistical reasoning and statistical methodology to biology. Topics include descriptive statistics, graphical methods, experimental design, probability, statistical inference and regression. In addition, techniques of statistical computing are covered. Credit is not given for both STAT 212 and STAT 200." ></div>
+					
 
+				</td>
+				<td id="300-level">
 					<div class="item course" data-name="Statistics Programming Methods" data-pre="STAT200 STAT212" data-co="" data-label="STAT 385" data-id="STAT385" data-course-id="2385" data-content="Statisticians must be savvy in programming methods useful to the wide variety of analysis that they will be expected to perform. This course provides the foundation for writing and packaging statistical algorithms through the creation of functions and object oriented programming. Fundamental programming techniques and considerations will be emphasized. Students will also create dynamic reports that encapsulate their implemented algorithms. Students must have access to a computer on which they can install software. Prerequisite: <b>STAT 200 or STAT 212</b>." ></div>
+
+					<div class="item course" data-name="Individual Study" data-pre="" data-co="" data-label="STAT 390" data-id="STAT390" data-course-id="2390" data-content="May be repeated to a maximum of 8 hours. Prerequisite: Consent of instructor." ></div>
+
+					<div class="item course" data-name="Honors Individual Study" data-pre="" data-co="" data-label="STAT 391" data-id="STAT391" data-course-id="2391" data-content="May be repeated to a maximum of 8 hours. Prerequisite: Consent of instructor." ></div>						
+
+					<div class="item course" data-name="Fundamental Mathematics" data-pre="MATH231" data-co="" data-label="MATH 347" data-id="MATH347" data-course-id="1347" data-content="Fundamental ideas used in many areas of mathematics. Topics will include: techniques of proof, mathematical induction, binomial coefficients, rational and irrational numbers, the least upper bound axiom for real numbers, and a rigorous treatment of convergence of sequences and series. This will be supplemented by the instructor from topics available in the various texts. Students will regularly write proofs emphasizing precise reasoning and clear exposition. <b>Credit is not given for both MATH 347 and MATH 348</b>. Prerequisite: MATH 231." ></div>
 				</td>
 
 				<td id="400-level-one">
