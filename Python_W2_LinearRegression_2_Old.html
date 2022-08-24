@@ -13101,7 +13101,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Load-Data">Load Data<a class="anchor-link" href="#Load-Data">&#182;</a></h2>
+<h2 id="Prepare-the-Boston-Housing-Data">Prepare the Boston Housing Data<a class="anchor-link" href="#Prepare-the-Boston-Housing-Data">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13110,11 +13110,18 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;https://hastie.su.domains/ElemStatLearn/datasets/prostate.data&quot;</span><span class="p">)</span>
-<span class="n">myData</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">myData</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span>
-<span class="n">myData</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cd</span> ~/Desktop/STAT542_Liang
+<span class="n">Boston</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/Boston_Data.csv&quot;</span><span class="p">)</span> 
+<span class="n">myData</span> <span class="o">=</span> <span class="n">Boston</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">Boston</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+<span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span>
+<span class="n">iLog</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;crim&#39;</span><span class="p">,</span> <span class="s1">&#39;indus&#39;</span><span class="p">,</span> <span class="s1">&#39;nox&#39;</span><span class="p">,</span> <span class="s1">&#39;rm&#39;</span><span class="p">,</span> <span class="s1">&#39;dis&#39;</span><span class="p">,</span> <span class="s1">&#39;rad&#39;</span><span class="p">,</span> <span class="s1">&#39;tax&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iLog</span><span class="p">:</span>
+    <span class="n">myData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">myData</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">myData</span><span class="p">[</span><span class="s1">&#39;zn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;zn&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">10</span>
+<span class="n">myData</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">myData</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="mf">2.5</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10000</span>
+<span class="n">myData</span><span class="p">[</span><span class="s1">&#39;ptratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;ptratio&#39;</span><span class="p">])</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">myData</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span>
+<span class="n">myData</span><span class="p">[</span><span class="s1">&#39;lstat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">myData</span><span class="p">[</span><span class="s1">&#39;lstat&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13127,106 +13134,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt"></div>
 
 
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>lcavol</th>
-      <th>lweight</th>
-      <th>age</th>
-      <th>lbph</th>
-      <th>svi</th>
-      <th>lcp</th>
-      <th>gleason</th>
-      <th>pgg45</th>
-      <th>Y</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-0.579818</td>
-      <td>2.769459</td>
-      <td>50</td>
-      <td>-1.386294</td>
-      <td>0</td>
-      <td>-1.386294</td>
-      <td>6</td>
-      <td>0</td>
-      <td>-0.430783</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-0.994252</td>
-      <td>3.319626</td>
-      <td>58</td>
-      <td>-1.386294</td>
-      <td>0</td>
-      <td>-1.386294</td>
-      <td>6</td>
-      <td>0</td>
-      <td>-0.162519</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>-0.510826</td>
-      <td>2.691243</td>
-      <td>74</td>
-      <td>-1.386294</td>
-      <td>0</td>
-      <td>-1.386294</td>
-      <td>7</td>
-      <td>20</td>
-      <td>-0.162519</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>-1.203973</td>
-      <td>3.282789</td>
-      <td>58</td>
-      <td>-1.386294</td>
-      <td>0</td>
-      <td>-1.386294</td>
-      <td>6</td>
-      <td>0</td>
-      <td>-0.162519</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.751416</td>
-      <td>3.432373</td>
-      <td>62</td>
-      <td>-1.386294</td>
-      <td>0</td>
-      <td>-1.386294</td>
-      <td>6</td>
-      <td>0</td>
-      <td>0.371564</td>
-    </tr>
-  </tbody>
-</table>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>/Users/feng_macpro/Desktop/STAT542_Liang
+</pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -13236,7 +13150,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Training-vs-Test-Errors">Training vs Test Errors<a class="anchor-link" href="#Training-vs-Test-Errors">&#182;</a></h2><p>For linear regression models, when we add more and more variables, the training error (e.g., RSS or MSE) is always decreasing, but the test error (prediction error on an independent test data) is not necessary decreasing.</p>
+<h2 id="Training-Error-vs-Test-Error">Training Error vs Test Error<a class="anchor-link" href="#Training-Error-vs-Test-Error">&#182;</a></h2><p>For linear regression models, when we add more and more variables, the training error (e.g., RSS or MSE) is always decreasing, but the test error (prediction error on an independent test data) is not necessary decreasing.</p>
 
 </div>
 </div>
@@ -13320,7 +13234,7 @@ div#notebook {
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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nj1hzz2TjkhEMq2qet8ZThAvvPACU6ZMobg4VL9YuXIlHTp04JBDDmH27Nmcd955DBo0iAEDBmT0fdNRqY3NlZ8PDz4IxcWh03rqVNh++6SjEpFMqsN63+7OqaeeyujRozc69s477/Dss89y44038uijjzIu5uH2KrWRCdtsEzqtly5Vp7VIQ1SH9b779+/PQw89xOLFi4Ew2mn+/PksWrQId+fnP/85v//973nrrbcAaNGiBd98803G4wAliMzZdVf461/h1VfhgguSjkZEMqkO633vsssu/Pa3v6V///7suuuuDBgwgC+//JJPP/2U/fbbj169ejFs2DCuuuoqAE455RROP/30WDqpVe470371K/jjH0OyOPXUpKMRkUrUttx3Q6j3rXLfSbvqqtBpfeaZodN6992TjkhEMiEH632riSnTCgpg4kTYYQc44gj48sukIxIR2SRKEHFo3Roefxy++irMlfjuu6QjEpE0GkoTe01syveqBBGXXr1CP8R//gMXXlj9+SJSp5o0acKSJUtyIkm4O0uWLKFJkya1uk59EHE67rgwL+LPfw4zrU8+OemIRCTSvn17SktLqbNCnwlr0qQJ7du3r9U1ShBxGzs2dFqPGBEWHdptt6QjEhGgUaNGdOrUKekwspqamOJWUACTJoXZ1UccAQuze00kEZFyShB1oU2b0Gm9eDEcfbQ6rUWkXlCCqCu9e4elSv/1L7j44qSjERGplvog6tIJJ4RO6+uvD53Wv/hF0hGJiFRKdxB17Y9/hAMOgDPOCMlCskcdLggjUh8oQdS1ggJ46CFo2zZ0WufIELusV74gzLx54L5+QRglCclhShBJaNs2dFovXBg6rcvKko5ILr208gVhRHKUEkRS+vaFcePg5ZdDBVhJhntY8OnTT9MfnzevbuMRySJKEEk68UQ491y47jq4//6ko8k9M2bAj38Mxx8PjRunP6dRo5DERXKQEkTS/vQn2H9/GDYszLiW+C1fDhddBD/6Ebz7Ltx+O9x558YLwjRuDFtvHZLI0UfHsrykSDZTgkhao0ah07pNG/jZz8JkOomHOzzwAOy0U7hrO/VUmD07jCg78cTQ5FdYCGbhcfz4kBRGjYKnngrXjRoFK1cm/Z2I1AmtKJctSkpgn32gXz947rkw2kky5733YOTIMFGxuBhuuaV2iznNnw+//GVI5oWF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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -13343,10 +13257,66 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">test_MSE</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">train_MSE</span><span class="p">)))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[-1.76742031e-03, -5.63794245e-04],
+       [-2.37237145e-03, -7.12489515e-03],
+       [-6.12456483e-03, -6.57009685e-03],
+       [ 3.76499048e-04, -6.34006606e-04],
+       [-2.64092246e-02, -2.45785419e-02],
+       [ 1.02841741e-03, -3.11215802e-05],
+       [-4.55147305e-03, -4.71041358e-03],
+       [ 2.73787879e-05, -6.75821229e-07],
+       [-4.12064868e-03, -1.67715815e-03],
+       [-2.87467776e-03, -2.83835443e-03],
+       [-5.12902716e-03, -3.03260936e-03],
+       [-2.16327221e-02, -2.14872837e-02]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Understand-the-LS-Coefficient">Understand the LS Coefficient<a class="anchor-link" href="#Understand-the-LS-Coefficient">&#182;</a></h2><p>How to interprete LS coefficients? For example, the coefficient for variable “rm” measures the average change of Y per room, with all other predictors held fixed.</p>
+<p>Note that the result from SLR (regression with just one non-intercept predictor) might be different from the one from MLR. SLR suggests that “age” has a significant negative effect on housing price, while MLR suggests the opposite.</p>
+<p>Such seemingly contradictory statements are caused by correlations among predictors. In this case, “age” has strong positive correlation with “crim” and “lsat”, two predictors with negative effect on Y; So in the joint model, the coefficient with “age” turns out to be positive, to correct the negative contribution that has already been introduced to the mdoel through the other two predictors.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="n">tmpfit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;Y ~ age&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">myData</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">tmpfit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13363,15 +13333,62 @@ div#notebook {
 
 
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([[-0.08321623, -0.06892564],
-       [-0.00997633, -0.00311116],
-       [ 0.03980787, -0.03006297],
-       [-0.03887046, -0.07546234],
-       [ 0.01135871, -0.00128435],
-       [-0.00269569, -0.00889526],
-       [-0.00157113, -0.01073944]])</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>Y</td>        <th>  R-squared:         </th> <td>   0.232</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.231</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   152.6</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Thu, 28 Jan 2021</td> <th>  Prob (F-statistic):</th> <td>8.25e-31</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>15:40:17</td>     <th>  Log-Likelihood:    </th> <td> -197.88</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   506</td>      <th>  AIC:               </th> <td>   399.8</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   504</td>      <th>  BIC:               </th> <td>   408.2</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    3.3141</td> <td>    0.028</td> <td>  119.720</td> <td> 0.000</td> <td>    3.260</td> <td>    3.369</td>
+</tr>
+<tr>
+  <th>age</th>       <td>   -0.0553</td> <td>    0.004</td> <td>  -12.353</td> <td> 0.000</td> <td>   -0.064</td> <td>   -0.046</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>32.632</td> <th>  Durbin-Watson:     </th> <td>   0.551</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  71.504</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.354</td> <th>  Prob(JB):          </th> <td>2.97e-16</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 4.700</td> <th>  Cond. No.          </th> <td>    10.9</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </div>
 
 </div>
@@ -13379,25 +13396,17 @@ div#notebook {
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interpret-LS-Coefficients">Interpret LS Coefficients<a class="anchor-link" href="#Interpret-LS-Coefficients">&#182;</a></h2><p>How to interpret LS coefficients? For example, the coefficient for variable age measures the average change of the response per year, <strong>with all other predictors held fixed</strong>.</p>
-<p>Note that the result from SLR (regression with just one non-intercept predictor) might be different from the one from MLR. For example, SLR suggests that age has a negative effect on the response, while MLR suggests the opposite.</p>
-<p>Such seemingly contradictory statements are caused by correlations among predictors. In this case, “age” has positive correlation with a bunch of predictors with positive effect on Y; So in the joint model, the coefficient with “age” turns out to be negative, to correct the positive contribution that has already been introduced to the model through the other predictors.</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
-<span class="n">tmpfit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;Y ~ age&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">myData</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">tmpfit</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_covariates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">all_covariates</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">my_formula</span> <span class="o">=</span> <span class="s2">&quot;Y ~ &quot;</span> <span class="o">+</span> <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">all_covariates</span><span class="p">)</span>
+<span class="n">lmfit2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">my_formula</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">myData</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">lmfit2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13418,31 +13427,31 @@ div#notebook {
 <table class="simpletable">
 <caption>OLS Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>            <td>Y</td>        <th>  R-squared:         </th> <td>   0.029</td>
+  <th>Dep. Variable:</th>            <td>Y</td>        <th>  R-squared:         </th> <td>   0.765</td> 
 </tr>
 <tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.019</td>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.759</td> 
 </tr>
 <tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   2.813</td>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   123.2</td> 
 </tr>
 <tr>
-  <th>Date:</th>             <td>Wed, 24 Aug 2022</td> <th>  Prob (F-statistic):</th>  <td>0.0968</td> 
+  <th>Date:</th>             <td>Thu, 28 Jan 2021</td> <th>  Prob (F-statistic):</th> <td>2.33e-145</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>00:18:48</td>     <th>  Log-Likelihood:    </th> <td> -149.64</td>
+  <th>Time:</th>                 <td>15:40:21</td>     <th>  Log-Likelihood:    </th> <td>  101.59</td> 
 </tr>
 <tr>
-  <th>No. Observations:</th>      <td>    97</td>      <th>  AIC:               </th> <td>   303.3</td>
+  <th>No. Observations:</th>      <td>   506</td>      <th>  AIC:               </th> <td>  -175.2</td> 
 </tr>
 <tr>
-  <th>Df Residuals:</th>          <td>    95</td>      <th>  BIC:               </th> <td>   308.4</td>
+  <th>Df Residuals:</th>          <td>   492</td>      <th>  BIC:               </th> <td>  -116.0</td> 
 </tr>
 <tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+  <th>Df Model:</th>              <td>    13</td>      <th>                     </th>     <td> </td>    
 </tr>
 <tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
 </tr>
 </table>
 <table class="simpletable">
@@ -13450,24 +13459,60 @@ div#notebook {
       <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>    0.7991</td> <td>    1.008</td> <td>    0.793</td> <td> 0.430</td> <td>   -1.202</td> <td>    2.800</td>
+  <th>Intercept</th> <td>    4.1769</td> <td>    0.379</td> <td>   11.020</td> <td> 0.000</td> <td>    3.432</td> <td>    4.922</td>
 </tr>
 <tr>
-  <th>age</th>       <td>    0.0263</td> <td>    0.016</td> <td>    1.677</td> <td> 0.097</td> <td>   -0.005</td> <td>    0.057</td>
+  <th>crim</th>      <td>   -0.0146</td> <td>    0.012</td> <td>   -1.254</td> <td> 0.211</td> <td>   -0.037</td> <td>    0.008</td>
+</tr>
+<tr>
+  <th>zn</th>        <td>    0.0014</td> <td>    0.006</td> <td>    0.247</td> <td> 0.805</td> <td>   -0.010</td> <td>    0.012</td>
+</tr>
+<tr>
+  <th>indus</th>     <td>   -0.0127</td> <td>    0.022</td> <td>   -0.570</td> <td> 0.569</td> <td>   -0.057</td> <td>    0.031</td>
+</tr>
+<tr>
+  <th>chas</th>      <td>    0.1100</td> <td>    0.037</td> <td>    3.002</td> <td> 0.003</td> <td>    0.038</td> <td>    0.182</td>
+</tr>
+<tr>
+  <th>nox</th>       <td>   -0.2831</td> <td>    0.105</td> <td>   -2.688</td> <td> 0.007</td> <td>   -0.490</td> <td>   -0.076</td>
+</tr>
+<tr>
+  <th>rm</th>        <td>    0.4211</td> <td>    0.110</td> <td>    3.822</td> <td> 0.000</td> <td>    0.205</td> <td>    0.638</td>
+</tr>
+<tr>
+  <th>age</th>       <td>    0.0064</td> <td>    0.005</td> <td>    1.317</td> <td> 0.189</td> <td>   -0.003</td> <td>    0.016</td>
+</tr>
+<tr>
+  <th>dis</th>       <td>   -0.1832</td> <td>    0.037</td> <td>   -4.977</td> <td> 0.000</td> <td>   -0.255</td> <td>   -0.111</td>
+</tr>
+<tr>
+  <th>rad</th>       <td>    0.0684</td> <td>    0.022</td> <td>    3.042</td> <td> 0.002</td> <td>    0.024</td> <td>    0.113</td>
+</tr>
+<tr>
+  <th>tax</th>       <td>   -0.2018</td> <td>    0.048</td> <td>   -4.167</td> <td> 0.000</td> <td>   -0.297</td> <td>   -0.107</td>
+</tr>
+<tr>
+  <th>ptratio</th>   <td>   -0.0400</td> <td>    0.008</td> <td>   -4.946</td> <td> 0.000</td> <td>   -0.056</td> <td>   -0.024</td>
+</tr>
+<tr>
+  <th>black</th>     <td>    0.0445</td> <td>    0.011</td> <td>    3.882</td> <td> 0.000</td> <td>    0.022</td> <td>    0.067</td>
+</tr>
+<tr>
+  <th>lstat</th>     <td>   -0.2626</td> <td>    0.016</td> <td>  -16.320</td> <td> 0.000</td> <td>   -0.294</td> <td>   -0.231</td>
 </tr>
 </table>
 <table class="simpletable">
 <tr>
-  <th>Omnibus:</th>       <td> 2.538</td> <th>  Durbin-Watson:     </th> <td>   0.067</td>
+  <th>Omnibus:</th>       <td>50.620</td> <th>  Durbin-Watson:     </th> <td>   1.001</td>
 </tr>
 <tr>
-  <th>Prob(Omnibus):</th> <td> 0.281</td> <th>  Jarque-Bera (JB):  </th> <td>   2.096</td>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td> 240.340</td>
 </tr>
 <tr>
-  <th>Skew:</th>          <td> 0.152</td> <th>  Prob(JB):          </th> <td>   0.351</td>
+  <th>Skew:</th>          <td>-0.257</td> <th>  Prob(JB):          </th> <td>6.47e-53</td>
 </tr>
 <tr>
-  <th>Kurtosis:</th>      <td> 3.653</td> <th>  Cond. No.          </th> <td>    558.</td>
+  <th>Kurtosis:</th>      <td> 6.337</td> <th>  Cond. No.          </th> <td>    458.</td>
 </tr>
 </table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </div>
@@ -13483,117 +13528,6 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_covariates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">all_covariates</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
-<span class="n">my_formula</span> <span class="o">=</span> <span class="s2">&quot;Y ~ &quot;</span> <span class="o">+</span> <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">all_covariates</span><span class="p">)</span>
-<span class="n">lmfit2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">my_formula</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">myData</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">lmfit2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>            <td>Y</td>        <th>  R-squared:         </th> <td>   0.663</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.633</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   21.68</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Wed, 24 Aug 2022</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>00:21:12</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>    97</td>      <th>  AIC:               </th> <td>   214.5</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>    88</td>      <th>  BIC:               </th> <td>   237.7</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     8</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    0.1816</td> <td>    1.321</td> <td>    0.137</td> <td> 0.891</td> <td>   -2.443</td> <td>    2.806</td>
-</tr>
-<tr>
-  <th>lcavol</th>    <td>    0.5643</td> <td>    0.088</td> <td>    6.425</td> <td> 0.000</td> <td>    0.390</td> <td>    0.739</td>
-</tr>
-<tr>
-  <th>lweight</th>   <td>    0.6220</td> <td>    0.201</td> <td>    3.096</td> <td> 0.003</td> <td>    0.223</td> <td>    1.021</td>
-</tr>
-<tr>
-  <th>age</th>       <td>   -0.0212</td> <td>    0.011</td> <td>   -1.917</td> <td> 0.058</td> <td>   -0.043</td> <td>    0.001</td>
-</tr>
-<tr>
-  <th>lbph</th>      <td>    0.0967</td> <td>    0.058</td> <td>    1.670</td> <td> 0.098</td> <td>   -0.018</td> <td>    0.212</td>
-</tr>
-<tr>
-  <th>svi</th>       <td>    0.7617</td> <td>    0.241</td> <td>    3.158</td> <td> 0.002</td> <td>    0.282</td> <td>    1.241</td>
-</tr>
-<tr>
-  <th>lcp</th>       <td>   -0.1061</td> <td>    0.090</td> <td>   -1.180</td> <td> 0.241</td> <td>   -0.285</td> <td>    0.073</td>
-</tr>
-<tr>
-  <th>gleason</th>   <td>    0.0492</td> <td>    0.155</td> <td>    0.317</td> <td> 0.752</td> <td>   -0.259</td> <td>    0.358</td>
-</tr>
-<tr>
-  <th>pgg45</th>     <td>    0.0045</td> <td>    0.004</td> <td>    1.021</td> <td> 0.310</td> <td>   -0.004</td> <td>    0.013</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td> 0.563</td> <th>  Durbin-Watson:     </th> <td>   1.540</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.755</td> <th>  Jarque-Bera (JB):  </th> <td>   0.183</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td> 0.017</td> <th>  Prob(JB):          </th> <td>   0.913</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.210</td> <th>  Cond. No.          </th> <td>1.32e+03</td>
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 1.32e+03. This might indicate that there are<br/>strong multicollinearity or other numerical problems.
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
@@ -13607,7 +13541,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -13630,124 +13564,259 @@ div#notebook {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>lcavol</th>
-      <th>lweight</th>
+      <th>crim</th>
+      <th>zn</th>
+      <th>indus</th>
+      <th>chas</th>
+      <th>nox</th>
+      <th>rm</th>
       <th>age</th>
-      <th>lbph</th>
-      <th>svi</th>
-      <th>lcp</th>
-      <th>gleason</th>
-      <th>pgg45</th>
+      <th>dis</th>
+      <th>rad</th>
+      <th>tax</th>
+      <th>ptratio</th>
+      <th>black</th>
+      <th>lstat</th>
       <th>Y</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>lcavol</th>
+      <th>crim</th>
       <td>1.00</td>
-      <td>0.28</td>
-      <td>0.22</td>
+      <td>-0.52</td>
+      <td>0.74</td>
       <td>0.03</td>
-      <td>0.54</td>
-      <td>0.68</td>
-      <td>0.43</td>
-      <td>0.43</td>
-      <td>0.73</td>
+      <td>0.81</td>
+      <td>-0.32</td>
+      <td>0.70</td>
+      <td>-0.74</td>
+      <td>0.84</td>
+      <td>0.81</td>
+      <td>0.45</td>
+      <td>-0.48</td>
+      <td>0.62</td>
+      <td>-0.57</td>
     </tr>
     <tr>
-      <th>lweight</th>
-      <td>0.28</td>
+      <th>zn</th>
+      <td>-0.52</td>
       <td>1.00</td>
-      <td>0.35</td>
-      <td>0.44</td>
+      <td>-0.66</td>
+      <td>-0.04</td>
+      <td>-0.57</td>
+      <td>0.31</td>
+      <td>-0.53</td>
+      <td>0.59</td>
+      <td>-0.35</td>
+      <td>-0.31</td>
+      <td>-0.35</td>
+      <td>0.18</td>
+      <td>-0.45</td>
+      <td>0.36</td>
+    </tr>
+    <tr>
+      <th>indus</th>
+      <td>0.74</td>
+      <td>-0.66</td>
+      <td>1.00</td>
+      <td>0.08</td>
+      <td>0.75</td>
+      <td>-0.43</td>
+      <td>0.66</td>
+      <td>-0.73</td>
+      <td>0.58</td>
+      <td>0.66</td>
+      <td>0.45</td>
+      <td>-0.33</td>
+      <td>0.62</td>
+      <td>-0.55</td>
+    </tr>
+    <tr>
+      <th>chas</th>
+      <td>0.03</td>
+      <td>-0.04</td>
+      <td>0.08</td>
+      <td>1.00</td>
+      <td>0.08</td>
+      <td>0.08</td>
+      <td>0.07</td>
+      <td>-0.09</td>
+      <td>0.01</td>
+      <td>-0.04</td>
+      <td>-0.13</td>
+      <td>0.05</td>
+      <td>-0.06</td>
       <td>0.16</td>
-      <td>0.16</td>
-      <td>0.06</td>
-      <td>0.11</td>
-      <td>0.43</td>
+    </tr>
+    <tr>
+      <th>nox</th>
+      <td>0.81</td>
+      <td>-0.57</td>
+      <td>0.75</td>
+      <td>0.08</td>
+      <td>1.00</td>
+      <td>-0.32</td>
+      <td>0.78</td>
+      <td>-0.86</td>
+      <td>0.61</td>
+      <td>0.67</td>
+      <td>0.34</td>
+      <td>-0.38</td>
+      <td>0.61</td>
+      <td>-0.52</td>
+    </tr>
+    <tr>
+      <th>rm</th>
+      <td>-0.32</td>
+      <td>0.31</td>
+      <td>-0.43</td>
+      <td>0.08</td>
+      <td>-0.32</td>
+      <td>1.00</td>
+      <td>-0.28</td>
+      <td>0.28</td>
+      <td>-0.21</td>
+      <td>-0.31</td>
+      <td>-0.32</td>
+      <td>0.13</td>
+      <td>-0.64</td>
+      <td>0.61</td>
     </tr>
     <tr>
       <th>age</th>
-      <td>0.22</td>
-      <td>0.35</td>
+      <td>0.70</td>
+      <td>-0.53</td>
+      <td>0.66</td>
+      <td>0.07</td>
+      <td>0.78</td>
+      <td>-0.28</td>
       <td>1.00</td>
-      <td>0.35</td>
-      <td>0.12</td>
-      <td>0.13</td>
-      <td>0.27</td>
-      <td>0.28</td>
-      <td>0.17</td>
-    </tr>
-    <tr>
-      <th>lbph</th>
-      <td>0.03</td>
-      <td>0.44</td>
-      <td>0.35</td>
-      <td>1.00</td>
-      <td>-0.09</td>
-      <td>-0.01</td>
-      <td>0.08</td>
-      <td>0.08</td>
-      <td>0.18</td>
-    </tr>
-    <tr>
-      <th>svi</th>
+      <td>-0.80</td>
+      <td>0.47</td>
       <td>0.54</td>
-      <td>0.16</td>
-      <td>0.12</td>
+      <td>0.38</td>
+      <td>-0.29</td>
+      <td>0.64</td>
+      <td>-0.48</td>
+    </tr>
+    <tr>
+      <th>dis</th>
+      <td>-0.74</td>
+      <td>0.59</td>
+      <td>-0.73</td>
       <td>-0.09</td>
-      <td>1.00</td>
-      <td>0.67</td>
-      <td>0.32</td>
-      <td>0.46</td>
-      <td>0.57</td>
-    </tr>
-    <tr>
-      <th>lcp</th>
-      <td>0.68</td>
-      <td>0.16</td>
-      <td>0.13</td>
-      <td>-0.01</td>
-      <td>0.67</td>
-      <td>1.00</td>
-      <td>0.51</td>
-      <td>0.63</td>
-      <td>0.55</td>
-    </tr>
-    <tr>
-      <th>gleason</th>
-      <td>0.43</td>
-      <td>0.06</td>
-      <td>0.27</td>
-      <td>0.08</td>
-      <td>0.32</td>
-      <td>0.51</td>
-      <td>1.00</td>
-      <td>0.75</td>
-      <td>0.37</td>
-    </tr>
-    <tr>
-      <th>pgg45</th>
-      <td>0.43</td>
-      <td>0.11</td>
+      <td>-0.86</td>
       <td>0.28</td>
-      <td>0.08</td>
-      <td>0.46</td>
-      <td>0.63</td>
-      <td>0.75</td>
+      <td>-0.80</td>
       <td>1.00</td>
-      <td>0.42</td>
+      <td>-0.54</td>
+      <td>-0.60</td>
+      <td>-0.32</td>
+      <td>0.32</td>
+      <td>-0.56</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>rad</th>
+      <td>0.84</td>
+      <td>-0.35</td>
+      <td>0.58</td>
+      <td>0.01</td>
+      <td>0.61</td>
+      <td>-0.21</td>
+      <td>0.47</td>
+      <td>-0.54</td>
+      <td>1.00</td>
+      <td>0.82</td>
+      <td>0.40</td>
+      <td>-0.41</td>
+      <td>0.46</td>
+      <td>-0.43</td>
+    </tr>
+    <tr>
+      <th>tax</th>
+      <td>0.81</td>
+      <td>-0.31</td>
+      <td>0.66</td>
+      <td>-0.04</td>
+      <td>0.67</td>
+      <td>-0.31</td>
+      <td>0.54</td>
+      <td>-0.60</td>
+      <td>0.82</td>
+      <td>1.00</td>
+      <td>0.48</td>
+      <td>-0.43</td>
+      <td>0.53</td>
+      <td>-0.56</td>
+    </tr>
+    <tr>
+      <th>ptratio</th>
+      <td>0.45</td>
+      <td>-0.35</td>
+      <td>0.45</td>
+      <td>-0.13</td>
+      <td>0.34</td>
+      <td>-0.32</td>
+      <td>0.38</td>
+      <td>-0.32</td>
+      <td>0.40</td>
+      <td>0.48</td>
+      <td>1.00</td>
+      <td>-0.20</td>
+      <td>0.43</td>
+      <td>-0.51</td>
+    </tr>
+    <tr>
+      <th>black</th>
+      <td>-0.48</td>
+      <td>0.18</td>
+      <td>-0.33</td>
+      <td>0.05</td>
+      <td>-0.38</td>
+      <td>0.13</td>
+      <td>-0.29</td>
+      <td>0.32</td>
+      <td>-0.41</td>
+      <td>-0.43</td>
+      <td>-0.20</td>
+      <td>1.00</td>
+      <td>-0.36</td>
+      <td>0.40</td>
+    </tr>
+    <tr>
+      <th>lstat</th>
+      <td>0.62</td>
+      <td>-0.45</td>
+      <td>0.62</td>
+      <td>-0.06</td>
+      <td>0.61</td>
+      <td>-0.64</td>
+      <td>0.64</td>
+      <td>-0.56</td>
+      <td>0.46</td>
+      <td>0.53</td>
+      <td>0.43</td>
+      <td>-0.36</td>
+      <td>1.00</td>
+      <td>-0.83</td>
     </tr>
     <tr>
       <th>Y</th>
-      <td>0.73</td>
-      <td>0.43</td>
-      <td>0.17</td>
-      <td>0.18</td>
-      <td>0.57</td>
-      <td>0.55</td>
-      <td>0.37</td>
-      <td>0.42</td>
+      <td>-0.57</td>
+      <td>0.36</td>
+      <td>-0.55</td>
+      <td>0.16</td>
+      <td>-0.52</td>
+      <td>0.61</td>
+      <td>-0.48</td>
+      <td>0.41</td>
+      <td>-0.43</td>
+      <td>-0.56</td>
+      <td>-0.51</td>
+      <td>0.40</td>
+      <td>-0.83</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -13771,7 +13840,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -13794,14 +13863,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">shape</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># p = 8, the number of non-intercept predictors</span>
-
-<span class="n">f_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">RSS1</span> <span class="o">-</span> <span class="n">RSS0</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">RSS1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">f_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">RSS1</span> <span class="o">-</span> <span class="n">RSS0</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">RSS1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">506</span> <span class="o">-</span> <span class="mi">14</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f_value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">f_value</span><span class="p">))</span>  <span class="c1"># F-stat and t-stat for age</span>
 </pre></div>
 
@@ -13819,7 +13885,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3.6748878552009163 1.9169997014086664
+<pre>1.733824280945283 1.3167476147482793
 </pre>
 </div>
 </div>
@@ -13830,10 +13896,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">f_value</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># p-value for F-test for age</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">f_value</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">506</span><span class="o">-</span><span class="mi">14</span><span class="p">)</span> <span class="c1"># p-value for F-test for age</span>
 </pre></div>
 
     </div>
@@ -13846,13 +13912,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.05848267729890899</pre>
+<pre>0.18853624114652479</pre>
 </div>
 
 </div>
@@ -13863,10 +13929,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">f_value</span><span class="p">),</span> <span class="n">n</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># p-value for T-test for age</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">f_value</span><span class="p">),</span> <span class="mi">506</span><span class="o">-</span><span class="mi">14</span><span class="p">))</span>  <span class="c1"># p-value for T-test for age</span>
 </pre></div>
 
     </div>
@@ -13879,13 +13945,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.0584826772989091</pre>
+<pre>0.18853624114646994</pre>
 </div>
 
 </div>
@@ -13896,7 +13962,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lmfit2</span><span class="o">.</span><span class="n">summary2</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,:]</span> <span class="c1"># compare the T-stat and p-value for age from lmfit2</span>
@@ -13912,18 +13978,18 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Coef.      -0.021248
-Std.Err.    0.011084
-t          -1.917000
-P&gt;|t|       0.058483
-[0.025     -0.043275
-0.975]      0.000779
+<pre>Coef.       0.006403
+Std.Err.    0.004863
+t           1.316748
+P&gt;|t|       0.188536
+[0.025     -0.003151
+0.975]      0.015958
 Name: age, dtype: float64</pre>
 </div>
 
