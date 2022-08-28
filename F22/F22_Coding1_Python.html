@@ -13460,7 +13460,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Part-II:-cv-KNN">Part II: cv-KNN<a class="anchor-link" href="#Part-II:-cv-KNN">&#182;</a></h2><p>Sample code for computing CV error for a particular K value.</p>
+<h2 id="Part-II:-cv-KNN">Part II: cv-KNN<a class="anchor-link" href="#Part-II:-cv-KNN">&#182;</a></h2><p>Sample code for computing CV error for a particular K value. </p>
 
 </div>
 </div>
@@ -13479,6 +13479,8 @@ div#notebook {
 <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
 <span class="n">index_sets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">num_folds</span><span class="p">)</span>
+
+<span class="n">traindata</span> <span class="o">=</span> <span class="n">Xtrain</span>
 
 <span class="k">for</span> <span class="n">ifold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_folds</span><span class="p">):</span>
     <span class="n">train_indices</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index_sets</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">ifold</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
