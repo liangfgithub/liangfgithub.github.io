@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>W2_LinearRegression_1</title>
+<title>Python_W2_LinearRegression_1</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,13 +13077,19 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Stat542:-Linear-Regression-(I)">Stat542: Linear Regression (I)<a class="anchor-link" href="#Stat542:-Linear-Regression-(I)">&#182;</a></h1>
+<h1 id="PSL:-Linear-Regression-(I)">PSL: Linear Regression (I)<a class="anchor-link" href="#PSL:-Linear-Regression-(I)">&#182;</a></h1><p>In this Notebook, we'll describe three different ways to fit a linear regression model in Python:</p>
+<ul>
+<li><strong>Scikit-Learn</strong></li>
+<li><strong>NumPy</strong></li>
+<li><strong>statsmodels</strong></li>
+</ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13119,7 +13125,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;https://hastie.su.domains/ElemStatLearn/datasets/prostate.data&quot;</span><span class="p">)</span>
@@ -13138,7 +13144,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[36]:</div>
 
 
 
@@ -13258,7 +13264,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span><span class="o">.</span><span class="n">shape</span>
@@ -13274,7 +13280,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
@@ -13292,14 +13298,14 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Remove the index column (col 0) and the train indicator column (col 10) and run a quick summary of each column of the data. For convenience, we rename the response column with a generic name "Y".</p>
+<p>Remove the index column (col 0) and the train indicator column (col 10) and run a quick summary of each column of the data. For convenience, we rename the response column with a generic name <code>Y</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -13318,7 +13324,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
@@ -13434,7 +13440,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -13444,47 +13450,18 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[20]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>lcavol     0
-lweight    0
-age        0
-lbph       0
-svi        0
-lcp        0
-gleason    0
-pgg45      0
-Y          0
-dtype: int64</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A quick summary of each column of myData</p>
+<p>A quick summary of each column of <code>myData</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
@@ -13500,7 +13477,7 @@ dtype: int64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[39]:</div>
 
 
 
@@ -13674,11 +13651,11 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Xnew</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">myData</span><span class="o">.</span><span class="n">median</span><span class="p">()]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">Xnew</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">Xnew</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">Xnew</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
 <span class="n">Xnew</span> <span class="o">=</span> <span class="n">Xnew</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">Xnew</span>
@@ -13694,7 +13671,7 @@ dtype: int64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[40]:</div>
 
 
 
@@ -13764,23 +13741,26 @@ dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We consider <strong>Three</strong> different ways to fit a linear regression model in Python:</p>
 <h3 id="1.-Use-sklearn.linear_model">1. Use <code>sklearn.linear_model</code><a class="anchor-link" href="#1.-Use-sklearn.linear_model">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="k">as</span> <span class="n">lm</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+
 <span class="n">lmfit1</span> <span class="o">=</span> <span class="n">lm</span><span class="p">()</span>
-<span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
-<span class="n">lmfit1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">lmfit1</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">lmfit1</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="n">lmfit1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">coefs</span> <span class="o">=</span> <span class="n">lmfit1</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">intercept</span> <span class="o">=</span> <span class="n">lmfit1</span><span class="o">.</span><span class="n">intercept_</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">intercept</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13808,12 +13788,27 @@ dtype: int64</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Predicting responses for new observations can be accomplished through two methods:</p>
+<ul>
+<li><p><strong>Method 1</strong>: Begin by organizing the new observations into a matrix or vector. Then, apply the following formula: intercept + newX (times) coefs.</p>
+</li>
+<li><p><strong>Method 2</strong>: Alternatively, structure the new observations as a data frame with identical column names as those in <code>myData</code>. Subsequently, utilize the predict function.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lmfit1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">),</span> <span class="n">lmfit1</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">Xnew</span><span class="p">,</span> <span class="n">lmfit1</span><span class="o">.</span><span class="n">coef_</span><span class="p">))</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">intercept</span> <span class="o">+</span> <span class="n">Xnew</span> <span class="o">@</span> <span class="n">coefs</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">lmfit1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13830,7 +13825,10 @@ dtype: int64</pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[2.71445433 2.28949063] [2.71445433 2.28949063]
+<pre>0    2.714454
+1    2.289491
+dtype: float64
+[2.71445433 2.28949063]
 </pre>
 </div>
 </div>
@@ -13842,20 +13840,21 @@ dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Use-statsmodels.formula.api.">2. Use <code>statsmodels.formula.api</code>.<a class="anchor-link" href="#2.-Use-statsmodels.formula.api.">&#182;</a></h3><p>You can use R-style formulas to specific models, but you cannot use <code>Y ~ .</code> and have to list all the covariates included in the model.</p>
+<h3 id="2.-Use-statsmodels.formula.api">2. Use <code>statsmodels.formula.api</code><a class="anchor-link" href="#2.-Use-statsmodels.formula.api">&#182;</a></h3><p>You can use R-style formulas (such as <code>Y ~ X1 + X2</code> ) to specific models.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 <span class="n">all_covariates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 <span class="n">all_covariates</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
 <span class="n">my_formula</span> <span class="o">=</span> <span class="s2">&quot;Y ~ &quot;</span> <span class="o">+</span> <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">all_covariates</span><span class="p">)</span>
+
 <span class="n">lmfit2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">my_formula</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">myData</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">lmfit2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
@@ -13870,7 +13869,7 @@ dtype: int64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
@@ -13887,10 +13886,10 @@ dtype: int64</pre>
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   21.68</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Tue, 23 Aug 2022</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
+  <th>Date:</th>             <td>Fri, 18 Aug 2023</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>23:50:25</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
+  <th>Time:</th>                 <td>23:28:19</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    97</td>      <th>  AIC:               </th> <td>   214.5</td>
@@ -13961,10 +13960,13 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lmfit2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">coefs</span> <span class="o">=</span> <span class="n">lmfit2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">intercept</span> <span class="o">=</span> <span class="n">lmfit2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">intercept</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13977,50 +13979,67 @@ dtype: int64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[26]:</div>
+    <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>lcavol     0.564341
+lweight    0.622020
+age       -0.021248
+lbph       0.096713
+svi        0.761673
+lcp       -0.106051
+gleason    0.049228
+pgg45      0.004458
+dtype: float64
+0.18156084546896145
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Predicting responses for new observations can be accomplished through two methods.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">intercept</span> <span class="o">+</span> <span class="n">Xnew</span> <span class="o">@</span> <span class="n">coefs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lmfit2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="output_text output_subarea output_execute_result">
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>0    2.714454
 1    2.289491
-dtype: float64</pre>
+dtype: float64
+0    2.714454
+1    2.289491
+dtype: float64
+</pre>
 </div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lmfit2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">Xnew</span><span class="p">,</span> <span class="n">lmfit2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[27]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([2.71445433, 2.28949063])</pre>
-</div>
-
 </div>
 
 </div>
@@ -14030,127 +14049,10 @@ dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Use-statsmodels.api.">3. Use <code>statsmodels.api</code>.<a class="anchor-link" href="#3.-Use-statsmodels.api.">&#182;</a></h3><p>When using <code>statsmodels.formula.api</code>, like in R, the intercept will be automaticlaly added to the model, but this is not the case with <code>statsmodels.api</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># need to add the constant in the design matrix</span>
-<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="n">lmfit3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">lmfit3</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[28]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>            <td>Y</td>        <th>  R-squared:         </th> <td>   0.663</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.633</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   21.68</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Tue, 23 Aug 2022</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>23:51:11</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>    97</td>      <th>  AIC:               </th> <td>   214.5</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>    88</td>      <th>  BIC:               </th> <td>   237.7</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     8</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-     <td></td>        <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>const</th>   <td>    0.1816</td> <td>    1.321</td> <td>    0.137</td> <td> 0.891</td> <td>   -2.443</td> <td>    2.806</td>
-</tr>
-<tr>
-  <th>lcavol</th>  <td>    0.5643</td> <td>    0.088</td> <td>    6.425</td> <td> 0.000</td> <td>    0.390</td> <td>    0.739</td>
-</tr>
-<tr>
-  <th>lweight</th> <td>    0.6220</td> <td>    0.201</td> <td>    3.096</td> <td> 0.003</td> <td>    0.223</td> <td>    1.021</td>
-</tr>
-<tr>
-  <th>age</th>     <td>   -0.0212</td> <td>    0.011</td> <td>   -1.917</td> <td> 0.058</td> <td>   -0.043</td> <td>    0.001</td>
-</tr>
-<tr>
-  <th>lbph</th>    <td>    0.0967</td> <td>    0.058</td> <td>    1.670</td> <td> 0.098</td> <td>   -0.018</td> <td>    0.212</td>
-</tr>
-<tr>
-  <th>svi</th>     <td>    0.7617</td> <td>    0.241</td> <td>    3.158</td> <td> 0.002</td> <td>    0.282</td> <td>    1.241</td>
-</tr>
-<tr>
-  <th>lcp</th>     <td>   -0.1061</td> <td>    0.090</td> <td>   -1.180</td> <td> 0.241</td> <td>   -0.285</td> <td>    0.073</td>
-</tr>
-<tr>
-  <th>gleason</th> <td>    0.0492</td> <td>    0.155</td> <td>    0.317</td> <td> 0.752</td> <td>   -0.259</td> <td>    0.358</td>
-</tr>
-<tr>
-  <th>pgg45</th>   <td>    0.0045</td> <td>    0.004</td> <td>    1.021</td> <td> 0.310</td> <td>   -0.004</td> <td>    0.013</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td> 0.563</td> <th>  Durbin-Watson:     </th> <td>   1.540</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.755</td> <th>  Jarque-Bera (JB):  </th> <td>   0.183</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td> 0.017</td> <th>  Prob(JB):          </th> <td>   0.913</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.210</td> <th>  Cond. No.          </th> <td>1.32e+03</td>
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 1.32e+03. This might indicate that there are<br/>strong multicollinearity or other numerical problems.
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To use the built-in prediction function for <code>sm.OLS</code>, we need to add a constant term to Xnew. However, Xnew already has some constant columns (i.e., columns of identical values); by default, <code>sm.add_constant</code> won't add a constant column to Xnew. So we need to use the option <code>has_constant='add'</code></p>
+<h4 id="statsmodels.api-vs-statsmodels.formula.api"><code>statsmodels.api</code> vs <code>statsmodels.formula.api</code><a class="anchor-link" href="#statsmodels.api-vs-statsmodels.formula.api">&#182;</a></h4><ul>
+<li>In <code>statsmodels.formula.api</code>, like in R, the intercept is automaticlaly added to the model. </li>
+<li>In <code>statsmodels.api</code>, we have to add a constant vector to <code>X</code> and <code>Xnew</code>.</li>
+</ul>
 
 </div>
 </div>
@@ -14160,43 +14062,26 @@ dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Xnew_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">Xnew</span><span class="p">,</span> <span class="n">has_constant</span><span class="o">=</span><span class="s1">&#39;add&#39;</span><span class="p">)</span>
-<span class="n">lmfit3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew_const</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">X_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># need to add the constant in the design matrix</span>
+<span class="n">newlmfit2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span> <span class="n">X_const</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1">#newlmfit2.summary()</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[29]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0    2.714454
-1    2.289491
-dtype: float64</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">Xnew_const</span><span class="p">,</span> <span class="n">lmfit3</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Xnew_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">Xnew</span><span class="p">,</span> <span class="n">has_constant</span><span class="o">=</span><span class="s1">&#39;add&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newlmfit2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew_const</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Xnew_const</span> <span class="o">@</span> <span class="n">newlmfit2</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14209,15 +14094,18 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[30]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([2.71445433, 2.28949063])</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0    2.714454
+1    2.289491
+dtype: float64
+0    2.714454
+1    2.289491
+dtype: float64
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14227,17 +14115,74 @@ dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="How-to-Compute-Some-Regression-Outputs">How to Compute Some Regression Outputs<a class="anchor-link" href="#How-to-Compute-Some-Regression-Outputs">&#182;</a></h3><p>Next, let's check how residual standard error, Log-Likelihood, and R-square are computed using the output from the second approach <code>lmfit2</code></p>
+<h3 id="3.-Use-Numpy">3. Use <code>Numpy</code><a class="anchor-link" href="#3.-Use-Numpy">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Add a column of ones for the intercept</span>
+<span class="n">X_const</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">X</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Calculate coefficients using the normal equation</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_const</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_const</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_const</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Xnew_const</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">Xnew</span><span class="p">),</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">Xnew</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Xnew_const</span> <span class="o">@</span> <span class="n">coefficients</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[2.71445433 2.28949063]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Compute-Regression-Outputs">Compute Regression Outputs<a class="anchor-link" href="#Compute-Regression-Outputs">&#182;</a></h2><p>Next, let's check how residual standard error, log-likelihood, and R-square are computed using the output from the second approach <code>lmfit2</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">lmfit2</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">lmfit2</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
 <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">residuals</span><span class="p">),</span> <span class="mi">8</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 </pre></div>
@@ -14267,7 +14212,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sigma_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residuals</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># Residual Standard Error</span>
@@ -14284,7 +14229,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[43]:</div>
+    <div class="prompt output_prompt">Out[67]:</div>
 
 
 
@@ -14301,7 +14246,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">-</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residuals</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="c1"># Log-Likelihood</span>
@@ -14317,7 +14262,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[46]:</div>
+    <div class="prompt output_prompt">Out[68]:</div>
 
 
 
@@ -14334,7 +14279,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residuals</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;Y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># R-square</span>
@@ -14350,7 +14295,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[47]:</div>
+    <div class="prompt output_prompt">Out[69]:</div>
 
 
 
@@ -14368,7 +14313,7 @@ dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Rank-Deficiency">Rank Deficiency<a class="anchor-link" href="#Rank-Deficiency">&#182;</a></h3><p>If the design matrix (including the intercept) is not of full rank, as we have learned in class, the LS coefficient vector is not unique.</p>
+<h2 id="Rank-Deficiency">Rank Deficiency<a class="anchor-link" href="#Rank-Deficiency">&#182;</a></h2><p>In cases where the design matrix, including the intercept, does not have full rank, as we have learned in class, the LS coefficient vector is not unique.</p>
 <p>In the following example, we add a redudant column variable <code>junk</code> to <code>myData</code>, and then fit a linear model using <code>statsmodels.formula.api</code> and <code>sklearn.linear_model</code>. Python will return just one of many equivalent LS solutions along with a warning on design matrix being singular. You can still use the fitted model to do prediction. The prediction result is the same as before.</p>
 
 </div>
@@ -14376,10 +14321,10 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span><span class="p">[</span><span class="s1">&#39;junk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">myData</span><span class="p">[</span><span class="s1">&#39;junk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">myData</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">my_formula</span> <span class="o">=</span> <span class="n">my_formula</span> <span class="o">+</span> <span class="s1">&#39;+ junk&#39;</span>
 <span class="n">tmpfit2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">my_formula</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">myData</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">tmpfit2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -14395,7 +14340,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[48]:</div>
+    <div class="prompt output_prompt">Out[76]:</div>
 
 
 
@@ -14412,10 +14357,10 @@ dtype: float64</pre>
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   21.68</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Wed, 24 Aug 2022</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
+  <th>Date:</th>             <td>Sat, 19 Aug 2023</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>00:12:10</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
+  <th>Time:</th>                 <td>00:04:42</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    97</td>      <th>  AIC:               </th> <td>   214.5</td>
@@ -14489,7 +14434,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Xnew</span><span class="p">[</span><span class="s1">&#39;junk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Xnew</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Xnew</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
@@ -14506,7 +14451,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[51]:</div>
+    <div class="prompt output_prompt">Out[77]:</div>
 
 
 
@@ -14525,12 +14470,13 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
 <span class="n">tmpfit1</span> <span class="o">=</span> <span class="n">lm</span><span class="p">()</span>
-<span class="n">tmpfit1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+<span class="n">tmpfit1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tmpfit1</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tmpfit1</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
 </pre></div>
@@ -14562,7 +14508,7 @@ dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tmpfit1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
@@ -14578,13 +14524,62 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[53]:</div>
+    <div class="prompt output_prompt">Out[79]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>array([2.71445433, 2.28949063])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How does Python compute the LS coefficients when the design matrix does not have full rank? Check the code below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tmp</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">X</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">num_components</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">num_components</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">[:</span><span class="n">num_components</span><span class="p">])</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">F</span><span class="p">)</span> <span class="o">@</span> <span class="n">F</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+
+<span class="c1"># (intercept, other coefs)</span>
+<span class="n">V</span><span class="p">[:</span><span class="n">num_components</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">coefficients</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[93]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0.18156085,  0.16888759,  0.2265661 , -0.02124819,  0.09671252,
+        0.7616734 , -0.10605094,  0.04922793,  0.00445751,  0.39545369])</pre>
 </div>
 
 </div>
