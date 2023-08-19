@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>W2_LinearRegression_2</title>
+<title>Python_W2_LinearRegression_2</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Stat542:-Linear-Regression-(II)">Stat542: Linear Regression (II)<a class="anchor-link" href="#Stat542:-Linear-Regression-(II)">&#182;</a></h1>
+<h1 id="PSL:-Linear-Regression-(II)">PSL: Linear Regression (II)<a class="anchor-link" href="#PSL:-Linear-Regression-(II)">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13236,7 +13236,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Training-vs-Test-Errors">Training vs Test Errors<a class="anchor-link" href="#Training-vs-Test-Errors">&#182;</a></h2><p>For linear regression models, when we add more and more variables, the training error (e.g., RSS or MSE) is always decreasing, but the test error (prediction error on an independent test data) is not necessary decreasing.</p>
+<h2 id="Training-vs-Test-Errors">Training vs Test Errors<a class="anchor-link" href="#Training-vs-Test-Errors">&#182;</a></h2><p>In linear regression models, as we introduce more variables, training error (measured by RSS or MSE) consistently decreases. However, this reduction in training error does not guarantee a corresponding decrease in test error, which measures prediction accuracy on independent test data.</p>
+<p>To demonstrate this, we randomly split our dataset into 60% training and 40% test portions, progressively adding predictors. This approach highlights how additional predictors can lower training error while test error may not follow the same trend.</p>
 
 </div>
 </div>
@@ -13246,9 +13247,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Divide myData into training and test</span>
-
-<span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">shape</span>
 <span class="n">p_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="n">p_range</span> <span class="o">=</span> <span class="n">p_range</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -13334,9 +13333,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You can remove <code>np.random.seed(2)</code> and run the code above multiple time.</p>
-<p>In most cases, the blue line is below the red line (i.e., training error is better than test error), but sometimes, the red line could be below the blue line (i.e., test error is even better than the training error).</p>
-<p>In each iteration, you would see the blue line is always monotonically decreasing, but red line is not necessarily decreasing. Check the differences between the adjacent terms, which should be always negative for the blue line, but could have some positive terms for the red line.</p>
+<p>You can remove <code>np.random.seed(2)</code> and run the code above multiple time. You’ll observe the following patterns:</p>
+<ul>
+<li><p>In most instances, the blue line (representing training error) tends to be positioned below the red line (representing test error), indicating that the training error is generally superior to the test error. However, due to the inherent randomness, there might be instances where the red line falls below the blue line, indicating that the test error outperforms the training error occasionally.</p>
+</li>
+<li><p>In each iteration, the blue line consistently exhibits a monotonically decreasing trend, signifying the reduction of training error as more predictors are incorporated. On the other hand, the red line’s trajectory may not uniformly decrease. Upon closer examination of the differences between adjacent terms, you’ll observe negative values consistently for the blue line, but for the red line, these differences might encompass some positive values.</p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -13383,9 +13386,9 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interpret-LS-Coefficients">Interpret LS Coefficients<a class="anchor-link" href="#Interpret-LS-Coefficients">&#182;</a></h2><p>How to interpret LS coefficients? For example, the coefficient for variable age measures the average change of the response per year, <strong>with all other predictors held fixed</strong>.</p>
-<p>Note that the result from SLR (regression with just one non-intercept predictor) might be different from the one from MLR. For example, SLR suggests that age has a negative effect on the response, while MLR suggests the opposite.</p>
-<p>Such seemingly contradictory statements are caused by correlations among predictors. In this case, “age” has positive correlation with a bunch of predictors with positive effect on Y; So in the joint model, the coefficient with “age” turns out to be negative, to correct the positive contribution that has already been introduced to the model through the other predictors.</p>
+<h2 id="Interpret-LS-Coefficients">Interpret LS Coefficients<a class="anchor-link" href="#Interpret-LS-Coefficients">&#182;</a></h2><p>How to interpret LS coefficients? LS coefficients express how changes in predictors affect the response while holding all other predictors constant. For instance, the coefficient for age quantifies the average change in the response variable for each year increase in age, <strong>holding all other predictors constant</strong>.</p>
+<p>It’s noteworthy that results from Simple Linear Regression (SLR), which involves only one non-intercept predictor, might differ from results in Multiple Linear Regression (MLR), which incorporates multiple predictors. This divergence can arise due to correlations among predictors.</p>
+<p>For instance, consider the case where <code>age</code> is positively correlated with some predictors that have a positive effect on the response. In a joint model (MLR), the coefficient for <code>age</code> appears negative, seemingly contrary to its positive effect in an isolated model (SLR). This adjustment compensates for the positive contribution introduced by other predictors, ensuring that the overall model accurately represents the relationships between predictors and the response variable.</p>
 
 </div>
 </div>
@@ -13427,10 +13430,10 @@ div#notebook {
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   2.813</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Wed, 24 Aug 2022</td> <th>  Prob (F-statistic):</th>  <td>0.0968</td> 
+  <th>Date:</th>             <td>Sat, 19 Aug 2023</td> <th>  Prob (F-statistic):</th>  <td>0.0968</td> 
 </tr>
 <tr>
-  <th>Time:</th>                 <td>00:18:48</td>     <th>  Log-Likelihood:    </th> <td> -149.64</td>
+  <th>Time:</th>                 <td>00:32:54</td>     <th>  Log-Likelihood:    </th> <td> -149.64</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    97</td>      <th>  AIC:               </th> <td>   303.3</td>
@@ -13480,7 +13483,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_covariates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
@@ -13500,7 +13503,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -13517,10 +13520,10 @@ div#notebook {
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   21.68</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Wed, 24 Aug 2022</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
+  <th>Date:</th>             <td>Sat, 19 Aug 2023</td> <th>  Prob (F-statistic):</th> <td>7.65e-18</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>00:21:12</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
+  <th>Time:</th>                 <td>01:10:15</td>     <th>  Log-Likelihood:    </th> <td> -98.248</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    97</td>      <th>  AIC:               </th> <td>   214.5</td>
@@ -13591,7 +13594,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
@@ -13607,7 +13610,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -13755,6 +13758,100 @@ div#notebook {
 </div>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Partial-Regression-Coef">Partial Regression Coef<a class="anchor-link" href="#Partial-Regression-Coef">&#182;</a></h2><p>Check how to retrieve the LS coefficient for <code>age</code> using Algorithm 3.1</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">partial_lm</span> <span class="o">=</span> <span class="n">lm</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">myData</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+<span class="n">partial_lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y_star</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">partial_lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y_star</span> <span class="o">=</span> <span class="n">y_star</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">partial_lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+<span class="n">age_star</span> <span class="o">=</span> <span class="n">myData</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">partial_lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">age_star</span> <span class="o">=</span> <span class="n">age_star</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">partial_lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">age_star</span><span class="p">,</span> <span class="n">y_star</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">partial_lm</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[-0.02124819]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The LS coefficient for <code>age</code> (from this <code>partial_lm</code>) is the same as the one from <code>lmfit2</code>. The residuals from the two LS models are also the same.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">lmfit2</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+<span class="n">res2</span> <span class="o">=</span> <span class="n">y_star</span> <span class="o">-</span> <span class="n">partial_lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">age_star</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">res1</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">res2</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>43.058418737724914
+43.05841873772491
+</pre>
+</div>
 </div>
 
 </div>
@@ -13939,56 +14036,37 @@ Name: age, dtype: float64</pre>
 <h2 id="Collinearity">Collinearity<a class="anchor-link" href="#Collinearity">&#182;</a></h2><p>Check the Car Seat Position Data.</p>
 <p>Car drivers like to adjust the seat position for their own comfort. Car designers would find it helpful to know how different drivers will position the seat depending on their size and age. Researchers at the HuMoSim laboratory at the University of Michigan collected data on 38 drivers.</p>
 <ul>
-<li>Age:</li>
-<li>Weight:</li>
-<li>HtShoes: height with shoes in cm</li>
-<li>Ht: height without shoes in cm</li>
-<li>Seated: seated height in cm</li>
-<li>Arm: lower arm length in cm</li>
-<li>Thigh: thigh length in cm</li>
-<li>Leg: lower leg length in cm</li>
-<li>hipcenter: horizontal distance of the midpoint of the hips from a fixed location in the car in mm</li>
+<li><code>Age</code>:</li>
+<li><code>Weight</code>:</li>
+<li><code>HtShoes</code>: height with shoes in cm</li>
+<li><code>Ht</code>: height without shoes in cm</li>
+<li><code>Seated</code>: seated height in cm</li>
+<li><code>Arm</code>: lower arm length in cm</li>
+<li><code>Thigh</code>: thigh length in cm</li>
+<li><code>Leg</code>: lower leg length in cm</li>
+<li><code>hipcenter</code>: horizontal distance of the midpoint of the hips from a fixed location in the car in mm</li>
 </ul>
-<p>The researchers were interested in determining if a relationship exists between hipcenter and the other variables. Due to the high correlations among the predictors, we see high R-square, significant overall F-test, but no individual variables are significant.</p>
+<p>The researchers were interested in determining if a relationship exists between <code>hipcenter</code> and the other variables. Due to the high correlations among the predictors, we see high R-square, significant overall F-test, but no individual variables are significant.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cd</span> ~/Desktop/STAT542_Liang/
-<span class="n">seatpos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/SeatPos.csv&quot;</span><span class="p">)</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seatpos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://liangfgithub.github.io/Data/SeatPos.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/Users/feng_macpro/Desktop/STAT542_Liang
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seatpos</span><span class="o">.</span><span class="n">shape</span>
@@ -14004,7 +14082,7 @@ Name: age, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[33]:</div>
 
 
 
@@ -14021,7 +14099,7 @@ Name: age, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seatpos</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -14037,7 +14115,7 @@ Name: age, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -14158,7 +14236,7 @@ Name: age, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_covariates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">seatpos</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
@@ -14178,7 +14256,7 @@ Name: age, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[35]:</div>
 
 
 
@@ -14195,10 +14273,10 @@ Name: age, dtype: float64</pre>
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   7.940</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Tue, 17 Sep 2019</td> <th>  Prob (F-statistic):</th> <td>1.31e-05</td>
+  <th>Date:</th>             <td>Sat, 19 Aug 2023</td> <th>  Prob (F-statistic):</th> <td>1.31e-05</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>02:00:00</td>     <th>  Log-Likelihood:    </th> <td> -186.73</td>
+  <th>Time:</th>                 <td>01:13:56</td>     <th>  Log-Likelihood:    </th> <td> -186.73</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    38</td>      <th>  AIC:               </th> <td>   391.5</td>
@@ -14269,7 +14347,7 @@ Name: age, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">seatpos</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
@@ -14285,7 +14363,7 @@ Name: age, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[36]:</div>
 
 
 
@@ -14441,7 +14519,7 @@ Name: age, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tmpfit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;hipcenter ~ Age + Weight + Ht + Seated&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">seatpos</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -14458,7 +14536,7 @@ Name: age, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
@@ -14475,10 +14553,10 @@ Name: age, dtype: float64</pre>
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   16.01</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Tue, 17 Sep 2019</td> <th>  Prob (F-statistic):</th> <td>2.22e-07</td>
+  <th>Date:</th>             <td>Sat, 19 Aug 2023</td> <th>  Prob (F-statistic):</th> <td>2.22e-07</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>02:00:00</td>     <th>  Log-Likelihood:    </th> <td> -188.28</td>
+  <th>Time:</th>                 <td>01:14:16</td>     <th>  Log-Likelihood:    </th> <td> -188.28</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    38</td>      <th>  AIC:               </th> <td>   386.6</td>
@@ -14537,7 +14615,7 @@ Name: age, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tmpfit</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;hipcenter ~ Ht&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">seatpos</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -14554,7 +14632,7 @@ Name: age, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[40]:</div>
 
 
 
@@ -14571,10 +14649,10 @@ Name: age, dtype: float64</pre>
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   63.53</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Tue, 17 Sep 2019</td> <th>  Prob (F-statistic):</th> <td>1.83e-09</td>
+  <th>Date:</th>             <td>Sat, 19 Aug 2023</td> <th>  Prob (F-statistic):</th> <td>1.83e-09</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>02:00:00</td>     <th>  Log-Likelihood:    </th> <td> -189.45</td>
+  <th>Time:</th>                 <td>01:14:27</td>     <th>  Log-Likelihood:    </th> <td> -189.45</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    38</td>      <th>  AIC:               </th> <td>   382.9</td>
