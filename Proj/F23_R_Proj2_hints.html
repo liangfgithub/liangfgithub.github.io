@@ -1766,7 +1766,7 @@ train_split &lt;- unique_pairs %&gt;%
   mutate(Yr = year(Date))
 
 test_split &lt;- unique_pairs %&gt;% 
-  left_join(test_current, by = c(&#39;Store&#39;, &#39;Dept&#39;)) %&gt;% 
+  left_join(test, by = c(&#39;Store&#39;, &#39;Dept&#39;)) %&gt;% 
   mutate(Wk = factor(ifelse(year(Date) == 2010, week(Date) - 1, week(Date)), levels = 1:52)) %&gt;%
   mutate(Yr = year(Date))
 
