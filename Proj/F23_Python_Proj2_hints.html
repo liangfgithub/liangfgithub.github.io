@@ -14694,11 +14694,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">myeval</span><span class="p">():</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="s1">'Proj2_Data/test_with_label.csv'</span>
-    <span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">test_with_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
     <span class="n">num_folds</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="n">wae</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_folds</span><span class="p">):</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'Proj2_Data/fold_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/test.csv'</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'IsHoliday'</span><span class="p">])</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">test_with_label</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">,</span> <span class="s1">'Store'</span><span class="p">,</span> <span class="s1">'Dept'</span><span class="p">])</span>
+
         <span class="n">file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'Proj2_Data/fold_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/mypred.csv'</span>
         <span class="n">test_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
 
