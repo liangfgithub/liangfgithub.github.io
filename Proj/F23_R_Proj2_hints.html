@@ -1572,16 +1572,22 @@ employed the following function to compute the weighted mean absolute
 error.</p>
 <pre class="r"><code>myeval = function(){
   file_path = paste0(&#39;Proj2_Data/test_with_label.csv&#39;)
-  test = read.csv(file_path)
+  test_with_label = read.csv(file_path)
   num_folds = 10
   wae = rep(0, num_folds)
   
   for (i in 1:num_folds) {
+    file_path = paste0(&#39;Proj2_Data/fold_&#39;, i, &#39;/test.csv&#39;)
+    test = read.csv(file_path)
+    test =  test %&gt;%
+      select(-IsHoliday) %&gt;%
+      left_join(test_with_label, by = c(&#39;Date&#39;, &#39;Store&#39;, &#39;Dept&#39;))
+    
     file_path = paste0(&#39;Proj2_Data/fold_&#39;, i, &#39;/mypred.csv&#39;)
     test_pred = read.csv(file_path)
     
-    new_test &lt;- test_pred %&gt;%
-      left_join(test, by = c(&#39;Date&#39;, &#39;Store&#39;, &#39;Dept&#39;))
+    new_test &lt;- test %&gt;%
+      left_join(test_pred, by = c(&#39;Date&#39;, &#39;Store&#39;, &#39;Dept&#39;))
     
     actuals = new_test$Weekly_Sales
     preds = new_test$Weekly_Pred
