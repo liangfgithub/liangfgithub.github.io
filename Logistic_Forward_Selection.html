@@ -13746,7 +13746,7 @@ div#notebook {
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)):</span>    
     <span class="n">AIC_fwd</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">AICforward</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
-    <span class="n">features</span> <span class="o">=</span> <span class="n">models_fwd</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;model&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog_names</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">AIC_fwd</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;model&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog_names</span>
 </pre></div>
 
     </div>
