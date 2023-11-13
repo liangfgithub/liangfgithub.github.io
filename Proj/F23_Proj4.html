@@ -1546,12 +1546,19 @@ measures are between 0 and 1. NA values may occur when 1) the set <span class="m
 than or equal to two (i.e., this pair of movies have been rated by only
 zero, one, or two users) or 2) one of the denominators is zero.</p>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(S\)</span> denote the
-3706-by-3706 similarity matrix computed in previous step. For each row,
-sort the non-NA similarity measures and keep the top 30, setting the
-rest to NA. This new similarity matrix, still denoted as <span class="math inline">\(S\)</span>, is no longer symmetric. Save this
-matrix online.</p></li>
-<li><p>Create a function named <code>myIBCF</code>:</p></li>
+<li>Let <span class="math inline">\(S\)</span> denote the 3706-by-3706
+similarity matrix computed in previous step. For each row, sort the
+non-NA similarity measures and keep the top 30, setting the rest to NA.
+This new similarity matrix, still denoted as <span class="math inline">\(S\)</span>, is no longer symmetric. Save this
+matrix online.</li>
+</ol>
+<blockquote>
+<p>Display the pairwise similarity values from the <span class="math inline">\(S\)</span> matrix for the following specified
+movies: “m1”, “m10”, “m100”, “m1510”, “m260”, “m3212”. Please round the
+results to 7 decimal places.</p>
+</blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a function named <code>myIBCF</code>:</li>
 </ol>
 <ul>
 <li><p><strong>Input</strong>: <code>newuser</code>, a 6040-by-1 vector
@@ -1580,8 +1587,10 @@ by this user.</li>
 </div>
 <div id="test-your-function" class="section level3">
 <h3>Test your function</h3>
+<blockquote>
 <p>For your function <code>myIBCF</code>, print the top 10
 recommendations for the following three users:</p>
+</blockquote>
 <ul>
 <li>User “u1181” from the rating matrix <span class="math inline">\(R\)</span></li>
 <li>User “u1351” from the rating matrix <span class="math inline">\(R\)</span></li>
