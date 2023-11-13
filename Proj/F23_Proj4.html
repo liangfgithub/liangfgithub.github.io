@@ -1558,9 +1558,8 @@ matrix online.</p></li>
 (denoted as <span class="math inline">\(w\)</span>) containing ratings
 for the 6,040 movies from a new user. Many entries in this vector will
 be zero. The order of the movies in this vector should match the rating
-matrix <span class="math inline">\(R\)</span>. (Should we center <span class="math inline">\(w\)</span>? If the primary focus is on ranking the
-ratings rather than their absolute values, centering may not be
-necessary.)</p></li>
+matrix <span class="math inline">\(R\)</span>. (Should we center <span class="math inline">\(w\)</span>? For IBCF, centering the new user
+ratings is not necessary.)</p></li>
 <li><p><strong>Inside the function</strong>: Upon receiving this input,
 your function should download the similarity matrix and use it to
 compute predictions for movies that have not been rated by this new user
