@@ -1573,7 +1573,8 @@ compute predictions for movies that have not been rated by this new user
 yet. Use the following formula to compute the prediction for movie <span class="math inline">\(l\)</span>:</p></li>
 </ul>
 <p><span class="math display">\[
-\frac{1}{\sum_{i \in S(l)} S_{li}} \sum_{i \in S(l) } S_{li} w_{i}
+\frac{1}{\sum_{i \in S(l)} S_{li} \mathbf{1}_{\{w_i \ne NA\}}} \sum_{i
+\in S(l) } S_{li} w_{i}
 \]</span> where <span class="math inline">\(S(l)\)</span> denotes the
 set of movies in the 30-nearest neighborhood of movie <span class="math inline">\(l.\)</span> Again NA values may occur.</p>
 <ul>
