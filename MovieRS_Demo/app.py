@@ -10,9 +10,8 @@ from dash.dependencies import ALL, State
 from myfuns import (genres, get_displayed_movies, get_popular_movies,
                     get_recommended_movies)
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP, 
-dbc.icons.BOOTSTRAP], 
-               suppress_callback_exceptions=True)
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP], 
+    suppress_callback_exceptions=True)
 server = app.server
 
 # the style arguments for the sidebar. We use position:fixed and a fixed 
@@ -27,8 +26,7 @@ SIDEBAR_STYLE = {
     "background-color": "#f8f9fa",
 }
 
-# the styles for the main content position it to the right of the sidebar 
-and
+# the styles for the main content position it to the right of the sidebar and
 # add some padding.
 CONTENT_STYLE = {
     "margin-left": "18rem",
@@ -43,8 +41,7 @@ sidebar = html.Div(
         dbc.Nav(
             [
                 dbc.NavLink("System 1 - Genre", href="/", active="exact"),
-                dbc.NavLink("System 2 - Collaborative", href="/system-2", 
-active="exact"),
+                dbc.NavLink("System 2 - Collaborative", href="/system-2", active="exact"),
             ],
             vertical=True,
             pills=True,
@@ -91,8 +88,7 @@ def render_page_content(pathname):
                                     dbc.Button(
                                         children=[
                                             "Get recommendations ",
-                                            html.I(className="bi 
-bi-emoji-heart-eyes-fill"),
+                                            html.I(className="bi bi-emoji-heart-eyes-fill"),
                                         ],
                                         size="lg",
                                         className="btn-success",
@@ -170,8 +166,7 @@ src=f"https://liangfgithub.github.io/MovieImages/{movie.movie_id}.jpg?raw=true",
                 ),
                 dbc.CardBody(
                     [
-                        html.H6(movie.title, className="card-title 
-text-center"),
+                        html.H6(movie.title, className="card-title text-center"),
                     ]
                 ),
             ]
