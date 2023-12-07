@@ -14,8 +14,7 @@ app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP]
     suppress_callback_exceptions=True)
 server = app.server
 
-# the style arguments for the sidebar. We use position:fixed and a fixed 
-width
+# the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
     "position": "fixed",
     "top": 0,
