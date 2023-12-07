@@ -103,21 +103,20 @@ def render_page_content(pathname):
                                 get_movie_card(movie, with_rating=True)
                                 for idx, movie in movies.iterrows()
                             ],
-                            className="row row-cols-1 row-cols-5",
-                            id="rating-movies",
+                            className="row row-cols-1 row-cols-5", id="rating-movies",
                         ),
                     ],
                     id="rate-movie-container",
                 ),
                 html.H1(
                     "Your recommendations", id="your-recommendation",  
-style={"display": "none"}
+                    style={"display": "none"}
                 ),
                 dcc.Loading(
                     [
                         dcc.Link(
                             "Try again", href="/system-2", refresh=True, 
-className="mb-2 d-block"
+                            className="mb-2 d-block"
                         ),
                         html.Div(
                             className="row row-cols-1 row-cols-5",
@@ -129,8 +128,7 @@ className="mb-2 d-block"
             ]
         )
 
-@app.callback(Output("genre-output", "children"), Input("genre-dropdown", 
-"value"))
+@app.callback(Output("genre-output", "children"), Input("genre-dropdown", "value"))
 def update_output(genre):
     if genre is None:
         return html.Div()
@@ -142,8 +140,7 @@ def update_output(genre):
                         [
                             *[
                                 get_movie_card(movie)
-                                for idx, movie in 
-get_popular_movies(genre).iterrows()
+                                for idx, movie in get_popular_movies(genre).iterrows()
                             ],
                         ],
                         className="row row-cols-1 row-cols-5",
@@ -159,8 +156,7 @@ def get_movie_card(movie, with_rating=False):
         dbc.Card(
             [
                 dbc.CardImg(
-                    
-src=f"https://liangfgithub.github.io/MovieImages/{movie.movie_id}.jpg?raw=true",
+                    src=f"https://liangfgithub.github.io/MovieImages/{movie.movie_id}.jpg?raw=true",
                     top=True,
                 ),
                 dbc.CardBody(
@@ -180,8 +176,7 @@ src=f"https://liangfgithub.github.io/MovieImages/{movie.movie_id}.jpg?raw=true",
                             {"label": "5", "value": "5"},
                         ],
                         className="text-center",
-                        id={"type": "movie_rating", "movie_id": 
-movie.movie_id},
+                        id={"type": "movie_rating", "movie_id": movie.movie_id},
                         inputClassName="m-1",
                         labelClassName="px-1",
                     )
@@ -215,8 +210,7 @@ def on_recommend_button_clicked(n):
 
 def on_getting_recommendations(style, ratings, ids):
     rating_input = {
-        ids[i]["movie_id"]: int(rating) for i, rating in 
-enumerate(ratings) if rating is not None
+        ids[i]["movie_id"]: int(rating) for i, rating in enumerate(ratings) if rating is not None
     }
   
     recommended_movies = get_recommended_movies(rating_input)
@@ -233,4 +227,4 @@ def update_button_recommened_visibility(values):
     return not list(filter(None, values))
 
 if __name__ == "__main__":
-    app.run_server(port=8080, debug=True)
+    app.run_server(debug=True)
