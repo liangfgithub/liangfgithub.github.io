@@ -1525,8 +1525,8 @@ are met.</li>
 <p>The Pegasos (Primal Estimated sub-GrAdient SOlver for SVM) algorithm,
 proposed by Shalev-Shwartz et al. (2011) [<a href="https://home.ttic.edu/~nati/Publications/PegasosMPB.pdf">Paper
 Link</a>], is an application of SGD.</p>
-<p>Recall that the primal problem of linear SVM can be expressed as the
-following “Loss + Penalty” format:</p>
+<p>Recall that the primal problem of linear SVM can be expressed in a
+“Loss + Penalty” format without constraints:</p>
 <p><span class="math display">\[
 \frac{1}{n} \sum_{i=1}^n \big [ 1 - y_i(x_i^t \boldsymbol{\beta} +
 \alpha) \big]_+ + \frac{\lambda}{2} \| \boldsymbol{\beta}\|^2
@@ -1534,6 +1534,13 @@ following “Loss + Penalty” format:</p>
 intercept and <span class="math inline">\(\boldsymbol{\beta}\)</span> is
 the <span class="math inline">\(p\)</span>-dimensional coefficient
 vector.</p>
+<p>Here <span class="math inline">\(\lambda\)</span> is not the Lagrange
+multiplier in the dual problem; rather, it is a tuning parameter
+associated with <span class="math inline">\(\|
+\boldsymbol{\beta}\|^2\)</span>, consistent with the notation used in
+the Pegasos paper. This <span class="math inline">\(\frac{\lambda}{2}\)</span> corresponds to <span class="math inline">\(\nu\)</span> in Eq (6) on page 10 of lec_W11.2_SVM
+[<a href="https://liangfgithub.github.io/Notes/lec_W11.2_SVM.pdf">Slides
+Link</a>].</p>
 <p>The <strong>Pegasos Algorithm</strong> can be summarized as
 follows:</p>
 <ol style="list-style-type: decimal">
@@ -1595,13 +1602,24 @@ dataset consists of 257 columns, with the first 256 columns representing
 the features, and the last column indicating the label (either 5 or
 6).</p>
 <ul>
-<li>[<a href="https://liangfgithub.github.io/Data/coding5_train.csv">coding5_train.csv</a>]</li>
-<li>[<a href="https://liangfgithub.github.io/Data/coding5_test.csv">coding5_test.csv</a>]</li>
+<li><code>coding5_train.csv</code> [<a href="https://liangfgithub.github.io/Data/coding5_train.csv">Link</a>]</li>
+<li><code>coding5_test.csv</code> [<a href="https://liangfgithub.github.io/Data/coding5_test.csv">Link</a>]</li>
+</ul></li>
+<li><p>If you set <span class="math inline">\(y_i = 1\)</span> for label
+5 and <span class="math inline">\(y_i = -1\)</span> for label 6, then
+after obtaining <span class="math inline">\(\boldsymbol{\beta}\)</span>
+and <span class="math inline">\(\alpha\)</span>, for a test point <span class="math inline">\(x_*\)</span>, you’ll predict:</p>
+<ul>
+<li><span class="math inline">\(y_* = 5\)</span>, if <span class="math inline">\(x_*^t \boldsymbol{\beta} + \alpha &gt; 0\)</span>;
+otherwise, 6.</li>
 </ul></li>
 <li><p>Report <strong>confusion tables</strong> on the <strong>training
 and test</strong> datasets.</p></li>
-<li><p>Your code should obtain <strong>less than 15%</strong> test
-error.</p></li>
+<li><p>Your code should obtain <strong>less than 10%</strong> test
+error. The choice of seeds will affect your results. However, since the
+algorithm is very fast, students can experiment with different seeds and
+<span class="math inline">\(\lambda\)</span> to ensure the benchmark is
+met.</p></li>
 </ul>
 </div>
 
